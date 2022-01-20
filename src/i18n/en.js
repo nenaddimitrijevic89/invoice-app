@@ -45,5 +45,7 @@ export const en = {
       deleteInvoice:
          'Are you sure you want to delete invoice # {{id}}? This action cannot be undone.',
    },
-   toast: {},
+   toast: {
+      invoiceCreated: 'Invoice created.',
+   },
 }
