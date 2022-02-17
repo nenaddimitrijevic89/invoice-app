@@ -47,5 +47,6 @@ export const rs = {
    },
    toast: {
       invoiceCreated: 'Faktura je napravljena.',
+      invoiceCompleted: 'Faktura kompletirana.',
    },
 }
