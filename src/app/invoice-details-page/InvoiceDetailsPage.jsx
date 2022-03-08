@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { Box, Center, Spinner, useDisclosure, useToast } from '@chakra-ui/react'
 
 import { useDataContext } from 'context/context'
@@ -12,6 +13,7 @@ import InvoiceDetailsTable from './InvoiceDetailsTable'
 
 const InvoiceDetailsPage = () => {
    const { invoices, onMarkAsPaid, onDelete, onEdit, openEditInvoice } = useDataContext()
+   const { t } = useTranslation()
    const { isOpen, onClose, onOpen } = useDisclosure()
    const [invoice, setInvoice] = useState()
    const { id } = useParams()
@@ -32,7 +34,7 @@ const InvoiceDetailsPage = () => {
       navigate('/')
       onDelete(invoice.id)
       toast({
-         title: 'Invoice deleted.',
+         title: t('toast.invoiceDeleted'),
          ...successToastProps,
       })
    }
