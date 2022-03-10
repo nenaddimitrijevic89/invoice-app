@@ -115,7 +115,7 @@ const EditInvoice = () => {
                />
             </HStack>
             <Text textStyle="h3" color="purpleLight" pt={5}>
-               Bill To
+               {t('billTo')}
             </Text>
             <Controller
                name="clientName"
