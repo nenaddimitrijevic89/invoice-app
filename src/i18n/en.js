@@ -50,6 +50,7 @@ export const en = {
       invoiceCreated: 'Invoice created.',
       invoiceCompleted: 'Invoice completed.',
       invoiceDeleted: 'Invoice deleted.',
+      invoicePaid: 'Invoice paid.',
       fillAllFields: 'Try to fill all fields.',
    },
 }
