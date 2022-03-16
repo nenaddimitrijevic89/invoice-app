@@ -49,5 +49,6 @@ export const en = {
    toast: {
       invoiceCreated: 'Invoice created.',
       invoiceCompleted: 'Invoice completed.',
+      invoiceDeleted: 'Invoice deleted.',
    },
 }
