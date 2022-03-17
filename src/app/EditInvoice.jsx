@@ -219,7 +219,7 @@ const EditInvoice = () => {
                type="button"
                onClick={() => append({ name: '', quantity: '', price: '', total: '' })}
             >
-               Add New Item
+               {t('addNewItem')}
             </Button>
          </VStack>
 
