@@ -225,7 +225,7 @@ const EditInvoice = () => {
 
          <InvoiceActionBar>
             <Button variant="button4" mr={3} type="reset" onClick={onCancel}>
-               Cancel
+               {t('common.cancel')}
             </Button>
             <Button
                variant="primary"
