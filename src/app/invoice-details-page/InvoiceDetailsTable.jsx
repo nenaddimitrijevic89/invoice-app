@@ -125,7 +125,7 @@ const InvoiceDetailsTable = ({ invoice }) => {
             justify="space-between"
             align="center"
          >
-            <Text>Amount Due</Text>
+            <Text>{t('amountDue')}</Text>
             <Text textStyle="h1" color={colorLight}>
                £ {invoice.total}
             </Text>
