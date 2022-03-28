@@ -69,7 +69,7 @@ const InvoiceDetailsTable = ({ invoice }) => {
                </VStack>
             </GridItem>
             <GridItem colSpan={5}>
-               <Text color={colorLight}>Sent to</Text>
+               <Text color={colorLight}>{t('sentTo')}</Text>
                <Text textStyle="h3" color={colorLight} mt={4}>
                   {invoice.clientEmail}
                </Text>
