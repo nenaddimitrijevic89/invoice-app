@@ -232,7 +232,7 @@ const EditInvoice = () => {
                type="submit"
                onClick={() => setTriggerSave(trigger => !trigger)}
             >
-               Save Changes
+               {t('common.saveChanges')}
             </Button>
          </InvoiceActionBar>
       </form>
