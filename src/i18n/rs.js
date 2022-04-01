@@ -10,7 +10,7 @@ export const rs = {
    paymentDate: 'Datum plaćanja',
    paymentDue: 'Plaćanje zbog',
    sentTo: 'Poslat',
-   amountDue: 'Amount Due',
+   amountDue: 'Preostali dug',
    qty: 'Količina',
    price: 'Cena',
    total: 'Ukupno',
