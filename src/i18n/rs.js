@@ -9,6 +9,8 @@ export const rs = {
    itemName: 'Ime proizvoda',
    paymentDate: 'Datum plaćanja',
    paymentDue: 'Plaćanje zbog',
+   sentTo: 'Poslat',
+   amountDue: 'Amount Due',
    qty: 'Količina',
    price: 'Cena',
    total: 'Ukupno',
