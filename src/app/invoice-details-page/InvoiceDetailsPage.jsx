@@ -43,7 +43,7 @@ const InvoiceDetailsPage = () => {
       onEdit(invoice.id)
       openEditInvoice()
       toast({
-         title: 'Try to fill all fields.',
+         title: t('toast.fillAllFields'),
          ...successToastProps,
       })
    }
