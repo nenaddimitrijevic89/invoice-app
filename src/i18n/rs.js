@@ -44,6 +44,7 @@ export const rs = {
       creteByClick: 'Kreirajte fakturu klikom na dugme Nova faktura i počnite',
       deleteInvoice:
          'Da li si siguran da želiš da obrišeš fakturu # {{id}}? Ova radnja se ne može opozvati.',
+      totalInvoices: 'Ukupan broj faktura je {{number}}',
    },
    toast: {
       invoiceCreated: 'Faktura je napravljena.',

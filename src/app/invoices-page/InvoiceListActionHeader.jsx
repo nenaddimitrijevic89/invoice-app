@@ -39,7 +39,7 @@ const InvoiceListActionHeader = ({ invoices }) => {
          <VStack align="start">
             <Text textStyle="h1">{t('invoices')}</Text>
             <Text textStyle="body1">
-               {hasInvoices ? `There are ${invoices.length} total invoice` : `No invoices`}
+               {hasInvoices ? t('totalInvoices', { number: invoices.length }) : t('noInvoices')}
             </Text>
          </VStack>
          <Box>

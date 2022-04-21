@@ -44,6 +44,7 @@ export const en = {
       creteByClick: 'Create invoice by clicking New Invoice button and get started',
       deleteInvoice:
          'Are you sure you want to delete invoice # {{id}}? This action cannot be undone.',
+      totalInvoices: 'There are {{number}} total invoice',
    },
    toast: {
       invoiceCreated: 'Invoice created.',
