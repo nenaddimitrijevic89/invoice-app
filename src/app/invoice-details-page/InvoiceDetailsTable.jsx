@@ -83,7 +83,7 @@ const InvoiceDetailsTable = ({ invoice }) => {
             rounded="8px 8px 0 0"
          >
             <GridItem colSpan={6}>
-               <Text mb={4}>Item Name</Text>
+               <Text mb={4}>{t('itemName')}</Text>
                {invoice.items.map((item, i) => (
                   <Text key={`${item.name}_${i}`} textStyle="h3" color={colorLight} mb={2}>
                      {item.name}
