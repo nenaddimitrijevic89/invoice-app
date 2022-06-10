@@ -78,7 +78,7 @@ const EditInvoice = () => {
                </Highlight>
             </Text>
             <Text textStyle="h3" color="purpleLight">
-               Bill From
+               {t('billFrom')}
             </Text>
             <Controller
                name="senderAddress.street"
