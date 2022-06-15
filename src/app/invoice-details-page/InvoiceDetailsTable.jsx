@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import {
    Box,
    Flex,
@@ -16,6 +17,7 @@ const InvoiceDetailsTable = ({ invoice }) => {
    const bgLight = useColorModeValue('#fff', 'purpleBlackDark')
    const bgMedium = useColorModeValue('bgLight', 'purpleBlackLight')
    const bgDark = useColorModeValue('greyLight', 'greyBlack')
+   const { t } = useTranslation()
 
    const disabledPaid = Number(invoice.total) === 0
 
@@ -56,7 +58,7 @@ const InvoiceDetailsTable = ({ invoice }) => {
             </GridItem>
             <GridItem colSpan={3}>
                <VStack align="left">
-                  <Text>Bill to</Text>
+                  <Text>{t('billTo')}</Text>
                   <Text textStyle="h3" color={colorLight} py={2}>
                      {invoice.clientName}
                   </Text>
