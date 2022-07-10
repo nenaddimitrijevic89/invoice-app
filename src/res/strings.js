@@ -47,6 +47,7 @@ export const strings = {
       creteByClick: 'Kreirajte fakturu klikom na dugme Nova faktura i počnite',
       itemName: 'Ime proizvoda',
       qty: 'Qty',
+      price: 'Cena',
       form: {
          street: 'Ulica',
          city: 'Grad',
