@@ -17,6 +17,7 @@ export const strings = {
       creteByClick: 'Create invoice by clicking New Invoice button and get started',
       itemName: 'Item Name',
       qty: 'Qty',
+      price: 'Price',
       form: {
          street: 'Street Address',
          city: 'City',
