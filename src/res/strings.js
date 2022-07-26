@@ -4,6 +4,7 @@ export const strings = {
       newInvoice: 'New Invoice',
       noInvoices: 'No invoices',
       billFrom: 'Bill From',
+      billTo: 'Bill To',
       filter: 'Filter by status',
       form: {
          street: 'Street Address',
@@ -21,6 +22,7 @@ export const strings = {
       newInvoice: 'Nova Faktura',
       noInvoices: 'Nema faktura',
       billFrom: 'Račun od',
+      billTo: 'Račun za',
       filter: 'Filtriraj',
       form: {
          street: 'Ulica',
