@@ -56,7 +56,7 @@ const EditInvoice = () => {
          saveEditedInvoice(values)
          onClose()
          toast({
-            title: t('toast.invoiceCreated'),
+            title: t('toast.invoiceCompleted'),
             ...successToastProps,
          })
       }
