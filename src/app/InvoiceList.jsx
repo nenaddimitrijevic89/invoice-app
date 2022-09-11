@@ -18,7 +18,7 @@ import { useDataContext } from 'context/context'
 import InvoiceCard from 'components/InvoiceCard'
 
 const InvoiceList = () => {
-   const { invoices, openCreateInvoice } = useDataContext()
+   const { invoices, isOpen, openCreateInvoice } = useDataContext()
    const color = useColorModeValue('#000', '#fff')
 
    return (
@@ -52,7 +52,11 @@ const InvoiceList = () => {
                         <MenuItem>Draft</MenuItem>
                      </MenuList>
                   </Menu>
-                  <Button onClick={openCreateInvoice} leftIcon={<FaPlusCircle />}>
+                  <Button
+                     onClick={openCreateInvoice}
+                     leftIcon={<FaPlusCircle />}
+                     isDisabled={isOpen}
+                  >
                      New Invoice
                   </Button>
                </Box>

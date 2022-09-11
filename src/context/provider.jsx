@@ -2,13 +2,14 @@ import React, { useCallback, useEffect, useState } from 'react'
 import { useDisclosure } from '@chakra-ui/react'
 
 import { fetchData } from 'services/dataService'
+import { generateID, paymentDueFormat } from 'utils/helpers'
 
 import { DataContext } from './context'
 
 const DataProvider = ({ children }) => {
    const [data, setData] = useState([])
    const [type, setType] = useState('')
-   const { isOpen, onToggle } = useDisclosure()
+   const { isOpen, onToggle, onClose } = useDisclosure()
 
    useEffect(() => {
       fetchData(setData)
@@ -26,13 +27,17 @@ const DataProvider = ({ children }) => {
 
    const saveInvoice = useCallback(
       invoice => {
-         const d = {
-            id: Math.random(),
-            clientName: invoice,
+         const newInvoice = {
+            ...invoice,
+            id: generateID(),
+            status: 'pending',
+            paymentDue: paymentDueFormat(invoice.createdAt, invoice.paymentDue),
          }
-         setData([d, ...data])
+         console.log({ invoice })
+         setData([newInvoice, ...data])
+         onClose()
       },
-      [data]
+      [data, onClose]
    )
 
    const providerValues = {
@@ -42,6 +47,7 @@ const DataProvider = ({ children }) => {
       saveInvoice,
       openCreateInvoice,
       openEditInvoice,
+      onClose,
    }
 
    return <DataContext.Provider value={providerValues}>{children}</DataContext.Provider>

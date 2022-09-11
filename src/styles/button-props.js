@@ -4,6 +4,10 @@ export const buttonProps = {
    baseStyle: {
       textStyle: 'h3Light',
       rounded: 'full',
+      _disabled: {
+         bg: 'grey',
+         cursor: 'none',
+      },
    },
    sizes: {
       default: {

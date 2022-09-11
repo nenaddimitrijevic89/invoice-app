@@ -6,6 +6,7 @@ export const selectProps = {
          textStyle: 'h3Light',
          rounded: '8px',
          border: '1px solid',
+         cursor: 'pointer',
       },
    },
    variants: {
@@ -17,11 +18,9 @@ export const selectProps = {
             height: '50px',
             '> option, > optgroup': {
                textStyle: 'h3Light',
+               padding: '10px',
                bg: mode('#fff', 'purpleBlackDark')(props),
                color: mode('greyBlack', '#fff')(props),
-               _hover: {
-                  bgColor: 'yellow',
-               },
             },
          },
          icon: {

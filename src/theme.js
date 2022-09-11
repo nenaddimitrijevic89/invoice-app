@@ -49,6 +49,10 @@ export const myTheme = extendTheme({
       redLight: '#ff9796',
       bgLight: '#f8f8fb',
       bgDark: '#141625',
+      orange: '#ff8e01',
+      orangeOpacity: 'rgba(255, 142, 1, 0.1)',
+      green: '#33d69f',
+      greenOpacity: 'rgba(51, 214, 159, 0.1)',
    },
    fontSizes: {
       small: '11px',
