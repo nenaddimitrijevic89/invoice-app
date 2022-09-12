@@ -17,7 +17,7 @@ export const selectProps = {
             borderColor: mode('greyLight', 'purpleBlackLight')(props),
             height: '50px',
             '> option, > optgroup': {
-               textStyle: 'h3Light',
+               textStyle: 'h3',
                padding: '10px',
                bg: mode('#fff', 'purpleBlackDark')(props),
                color: mode('greyBlack', '#fff')(props),
