@@ -31,10 +31,11 @@ const DataProvider = ({ children }) => {
             ...invoice,
             id: generateID(),
             status: 'pending',
-            paymentDue: paymentDueFormat(invoice.createdAt, invoice.paymentDue),
+            paymentDue: paymentDueFormat(invoice.createdAt, invoice.paymentTerms),
+            total: invoice.items.reduce((prev, cur) => prev + Number(cur.total), 0),
          }
-         console.log({ invoice })
-         setData([newInvoice, ...data])
+         console.log({ newInvoice })
+         setData([...data, newInvoice])
          onClose()
       },
       [data, onClose]

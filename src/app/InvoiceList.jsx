@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
    Box,
    Button,
@@ -20,6 +20,7 @@ import InvoiceCard from 'components/InvoiceCard'
 const InvoiceList = () => {
    const { invoices, isOpen, openCreateInvoice } = useDataContext()
    const color = useColorModeValue('#000', '#fff')
+   const [status, setStatus] = useState('Filter by status')
 
    return (
       <Center>
@@ -44,12 +45,13 @@ const InvoiceList = () => {
                         as={Button}
                         rightIcon={<FaChevronDown color="#7c5dfa" />}
                      >
-                        Filter by status
+                        {status}
                      </MenuButton>
-                     <MenuList>
-                        <MenuItem>Paid</MenuItem>
-                        <MenuItem>Pending</MenuItem>
-                        <MenuItem>Draft</MenuItem>
+                     <MenuList textStyle="h3Light">
+                        <MenuItem onClick={() => setStatus('paid')}>Paid</MenuItem>
+                        <MenuItem onClick={() => setStatus('pending')}>Pending</MenuItem>
+                        <MenuItem onClick={() => setStatus('draft')}>Draft</MenuItem>
+                        <MenuItem onClick={() => setStatus('Filter by status')}>Clear</MenuItem>
                      </MenuList>
                   </Menu>
                   <Button

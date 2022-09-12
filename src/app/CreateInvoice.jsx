@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
    Button,
    HStack,
@@ -22,12 +22,25 @@ import InvoiceActionBar from './InvoiceActionBar'
 
 const CreateInvoice = () => {
    const { onClose, saveInvoice } = useDataContext()
-   const { control, handleSubmit } = useForm()
+   const { control, handleSubmit, watch, setValue } = useForm()
 
    const { fields, append, remove } = useFieldArray({
       control,
       name: 'items',
    })
+
+   const items = watch('items')
+
+   useEffect(() => {
+      items?.forEach((item, i) => {
+         console.log(item.price, item.quantity)
+         if (item?.price && item?.quantity) {
+            const total = Number(item.price) * Number(item.quantity)
+            setValue(`items.[${i}].total`, total)
+         }
+      })
+   }, [items, setValue])
+   console.log({ items })
 
    const onSubmit = handleSubmit(values => {
       saveInvoice(values)
@@ -105,11 +118,12 @@ const CreateInvoice = () => {
                   render={({ field }) => <Input label="Invoice Date" type="date" {...field} />}
                />
                <Controller
-                  name="paymentDue"
+                  name="paymentTerms"
                   control={control}
                   render={({ field }) => (
                      <Select
                         label="Payment Terms"
+                        defaultValue={{ label: 'Next 10 days', value: 10 }}
                         options={[
                            { label: 'Next 30 days', value: 30 },
                            { label: 'Next 10 days', value: 10 },
@@ -128,21 +142,21 @@ const CreateInvoice = () => {
                   <GridItem colSpan={4}>
                      <Controller
                         render={({ field }) => <Input {...field} />}
-                        name={`test.${index}.name`}
+                        name={`items.${index}.name`}
                         control={control}
                      />
                   </GridItem>
                   <GridItem colSpan={1}>
                      <Controller
                         render={({ field }) => <Input type="number" pl={3} {...field} />}
-                        name={`test.${index}.quantity`}
+                        name={`items.${index}.quantity`}
                         control={control}
                      />
                   </GridItem>
                   <GridItem colSpan={3}>
                      <Controller
                         render={({ field }) => <Input type="number" {...field} />}
-                        name={`test.${index}.price`}
+                        name={`items.${index}.price`}
                         control={control}
                      />
                   </GridItem>
@@ -151,7 +165,7 @@ const CreateInvoice = () => {
                         render={({ field }) => (
                            <Input isReadOnly bg="transparent" border="none" {...field} />
                         )}
-                        name={`test.${index}.price`}
+                        name={`items.${index}.total`}
                         control={control}
                      />
                   </GridItem>
@@ -171,7 +185,7 @@ const CreateInvoice = () => {
                w="100%"
                leftIcon={<FaPlus />}
                type="button"
-               onClick={() => append({ name: '', quantity: null, price: null, total: null })}
+               onClick={() => append({ name: '', quantity: '', price: '', total: '' })}
             >
                Add New Item
             </Button>
