@@ -1,34 +1,25 @@
-import React, { useEffect } from 'react'
-import {
-   Button,
-   HStack,
-   Text,
-   VStack,
-   Flex,
-   Box,
-   Grid,
-   GridItem,
-   IconButton,
-} from '@chakra-ui/react'
+import React, { useEffect, useState } from 'react'
+import { Button, HStack, Text, VStack, Flex, Box } from '@chakra-ui/react'
 import { useForm, Controller, useFieldArray } from 'react-hook-form'
-import { FaPlus, FaTrashAlt } from 'react-icons/fa'
+import { FaPlus } from 'react-icons/fa'
 
 import { useDataContext } from 'context/context'
 import Input from 'components/Input'
 import Select from 'components/Select'
-import ItemLabels from 'components/ItemLabels'
-
-import InvoiceActionBar from './InvoiceActionBar'
+import FieldItemLabels from 'components/FieldItemLabels'
+import FieldItem from 'components/FieldItem'
+import InvoiceActionBar from 'components/InvoiceActionBar'
 
 const CreateInvoice = () => {
    const { onClose, saveInvoice } = useDataContext()
-   const { control, handleSubmit, watch, setValue } = useForm()
+   const [triggerSave, setTriggerSave] = useState(false)
+   const [status, setStatus] = useState('')
 
+   const { control, handleSubmit, watch, setValue } = useForm()
    const { fields, append, remove } = useFieldArray({
       control,
       name: 'items',
    })
-
    const items = watch('items')
 
    useEffect(() => {
@@ -36,15 +27,16 @@ const CreateInvoice = () => {
          console.log(item.price, item.quantity)
          if (item?.price && item?.quantity) {
             const total = Number(item.price) * Number(item.quantity)
-            setValue(`items.[${i}].total`, total)
+            setValue(`items.${i}.total`, total)
          }
       })
-   }, [items, setValue])
-   console.log({ items })
+   }, [items, setValue, triggerSave])
 
    const onSubmit = handleSubmit(values => {
-      saveInvoice(values)
+      saveInvoice(values, status)
    })
+
+   const rules = status === 'pending' ? { required: true } : { required: false }
 
    return (
       <form onSubmit={onSubmit}>
@@ -56,23 +48,26 @@ const CreateInvoice = () => {
             <Controller
                name="senderAddress.street"
                control={control}
-               ref={null}
+               rules={rules}
                render={({ field }) => <Input label="Street Address" {...field} />}
             />
             <HStack>
                <Controller
                   name="senderAddress.city"
                   control={control}
+                  rules={rules}
                   render={({ field }) => <Input label="City" id="city" {...field} />}
                />
                <Controller
                   name="senderAddress.postCode"
                   control={control}
+                  rules={rules}
                   render={({ field }) => <Input label="Post Code" {...field} />}
                />
                <Controller
                   name="senderAddress.country"
                   control={control}
+                  rules={rules}
                   render={({ field }) => <Input label="Country" {...field} />}
                />
             </HStack>
@@ -82,32 +77,38 @@ const CreateInvoice = () => {
             <Controller
                name="clientName"
                control={control}
+               rules={rules}
                render={({ field }) => <Input label="Client's Name" {...field} />}
             />
             <Controller
                name="clientEmail"
                control={control}
+               rules={rules}
                render={({ field }) => <Input label="Client's Email" {...field} />}
             />
             <Controller
                name="clientAddress.street"
                control={control}
+               rules={rules}
                render={({ field }) => <Input label="Street Address" {...field} />}
             />
             <HStack>
                <Controller
                   name="clientAddress.city"
                   control={control}
+                  rules={rules}
                   render={({ field }) => <Input label="City" {...field} />}
                />
                <Controller
                   name="clientAddress.postCode"
                   control={control}
+                  rules={rules}
                   render={({ field }) => <Input label="Post Code" {...field} />}
                />
                <Controller
                   name="clientAddress.country"
                   control={control}
+                  rules={rules}
                   render={({ field }) => <Input label="Country" {...field} />}
                />
             </HStack>
@@ -115,15 +116,17 @@ const CreateInvoice = () => {
                <Controller
                   name="createdAt"
                   control={control}
+                  rules={rules}
                   render={({ field }) => <Input label="Invoice Date" type="date" {...field} />}
                />
                <Controller
                   name="paymentTerms"
                   control={control}
+                  rules={rules}
                   render={({ field }) => (
                      <Select
                         label="Payment Terms"
-                        defaultValue={{ label: 'Next 10 days', value: 10 }}
+                        placehoder="Select payment term..."
                         options={[
                            { label: 'Next 30 days', value: 30 },
                            { label: 'Next 10 days', value: 10 },
@@ -136,50 +139,19 @@ const CreateInvoice = () => {
             <Text textStyle="h2" color="greyDark" pt={5}>
                Item List
             </Text>
-            <ItemLabels />
+            <FieldItemLabels />
             {fields.map((item, index) => (
-               <Grid templateColumns="repeat(12, 1fr)" gap={2} alignItems="center" key={item.id}>
-                  <GridItem colSpan={4}>
-                     <Controller
-                        render={({ field }) => <Input {...field} />}
-                        name={`items.${index}.name`}
-                        control={control}
-                     />
-                  </GridItem>
-                  <GridItem colSpan={1}>
-                     <Controller
-                        render={({ field }) => <Input type="number" pl={3} {...field} />}
-                        name={`items.${index}.quantity`}
-                        control={control}
-                     />
-                  </GridItem>
-                  <GridItem colSpan={3}>
-                     <Controller
-                        render={({ field }) => <Input type="number" {...field} />}
-                        name={`items.${index}.price`}
-                        control={control}
-                     />
-                  </GridItem>
-                  <GridItem colSpan={3}>
-                     <Controller
-                        render={({ field }) => (
-                           <Input isReadOnly bg="transparent" border="none" {...field} />
-                        )}
-                        name={`items.${index}.total`}
-                        control={control}
-                     />
-                  </GridItem>
-                  <GridItem colSpan={1}>
-                     <IconButton
-                        type="button"
-                        onClick={() => remove(index)}
-                        variant="unstyled"
-                        fontSize="24px"
-                        icon={<FaTrashAlt />}
-                     />
-                  </GridItem>
-               </Grid>
+               <FieldItem
+                  key={item.id}
+                  control={control}
+                  index={index}
+                  rules={rules}
+                  remove={remove}
+               />
             ))}
+            {fields.length > 0 && (
+               <Button onClick={() => setTriggerSave(trigger => !trigger)}>save item</Button>
+            )}
             <Button
                variant="button3"
                w="100%"
@@ -199,10 +171,10 @@ const CreateInvoice = () => {
                   </Button>
                </Box>
                <Box>
-                  <Button variant="button4" mr={3}>
+                  <Button variant="button4" mr={3} type="submit" onClick={() => setStatus('draft')}>
                      Save as Draft
                   </Button>
-                  <Button variant="primary" type="submit">
+                  <Button variant="primary" type="submit" onClick={() => setStatus('pending')}>
                      Save & Send
                   </Button>
                </Box>

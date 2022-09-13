@@ -18,7 +18,7 @@ import { useDataContext } from 'context/context'
 import InvoiceCard from 'components/InvoiceCard'
 
 const InvoiceList = () => {
-   const { invoices, isOpen, openCreateInvoice } = useDataContext()
+   const { invoices, openCreateInvoice } = useDataContext()
    const color = useColorModeValue('#000', '#fff')
    const [status, setStatus] = useState('Filter by status')
 
@@ -28,7 +28,7 @@ const InvoiceList = () => {
             <Flex justify="space-between" my={10}>
                <VStack>
                   <Text textStyle="h1">Invoices</Text>
-                  <Text textStyle="body1">There are 7 total invoice</Text>
+                  <Text textStyle="body1">{`There are ${invoices.length} total invoice`}</Text>
                </VStack>
                <Box>
                   <Menu>
@@ -54,11 +54,7 @@ const InvoiceList = () => {
                         <MenuItem onClick={() => setStatus('Filter by status')}>Clear</MenuItem>
                      </MenuList>
                   </Menu>
-                  <Button
-                     onClick={openCreateInvoice}
-                     leftIcon={<FaPlusCircle />}
-                     isDisabled={isOpen}
-                  >
+                  <Button onClick={openCreateInvoice} leftIcon={<FaPlusCircle />}>
                      New Invoice
                   </Button>
                </Box>

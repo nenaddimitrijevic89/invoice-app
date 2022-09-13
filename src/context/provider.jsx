@@ -26,11 +26,11 @@ const DataProvider = ({ children }) => {
    }
 
    const saveInvoice = useCallback(
-      invoice => {
+      (invoice, status) => {
          const newInvoice = {
             ...invoice,
             id: generateID(),
-            status: 'pending',
+            status,
             paymentDue: paymentDueFormat(invoice.createdAt, invoice.paymentTerms),
             total: invoice.items.reduce((prev, cur) => prev + Number(cur.total), 0),
          }
@@ -41,6 +41,11 @@ const DataProvider = ({ children }) => {
       [data, onClose]
    )
 
+   const onFilterStatus = status => {
+      const filtered = data.filter(invoice => invoice.status === status)
+      setData(filtered)
+   }
+
    const providerValues = {
       invoices: data,
       isOpen,
@@ -49,6 +54,7 @@ const DataProvider = ({ children }) => {
       openCreateInvoice,
       openEditInvoice,
       onClose,
+      onFilterStatus,
    }
 
    return <DataContext.Provider value={providerValues}>{children}</DataContext.Provider>
