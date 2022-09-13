@@ -7,7 +7,7 @@ import { useDataContext } from 'context/context'
 import StatusTag from './StatusTag'
 
 const InvoiceCard = ({ invoice }) => {
-   const { openEditInvoice, isOpen } = useDataContext()
+   const { openEditInvoice } = useDataContext()
    const bg = useColorModeValue('#fff', 'purpleBlackLight')
    const color = useColorModeValue('purpleBlackLight', '#fff')
    const { id, paymentDue, clientName, total, status } = invoice
@@ -50,7 +50,6 @@ const InvoiceCard = ({ invoice }) => {
                bg="transparent"
                icon={<FaChevronRight color="#7c5dfa" />}
                onClick={openEditInvoice}
-               isDisabled={isOpen}
             />
          </GridItem>
       </Grid>

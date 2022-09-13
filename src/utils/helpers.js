@@ -18,6 +18,9 @@ export const generateID = () => {
 }
 
 export const paymentDueFormat = (created, payment) => {
+   if (!created || !payment) {
+      return ' '
+   }
    let date = new Date(created)
    date.setDate(date.getDate() + Number(payment))
 

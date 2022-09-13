@@ -2,9 +2,9 @@ import '@fontsource/spartan'
 import React from 'react'
 import { ChakraProvider, Box } from '@chakra-ui/react'
 
-import SideBar from 'app/SideBar'
 import InvoiceForm from 'app/InvoiceForm'
 import InvoiceList from 'app/InvoiceList'
+import SideBar from 'components/SideBar'
 
 import { myTheme } from './theme'
 

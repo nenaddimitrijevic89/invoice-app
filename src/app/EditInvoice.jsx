@@ -2,8 +2,7 @@ import React from 'react'
 import { Box, Button } from '@chakra-ui/react'
 
 import { useDataContext } from 'context/context'
-
-import InvoiceActionBar from './InvoiceActionBar'
+import InvoiceActionBar from 'components/InvoiceActionBar'
 
 const EditInvoice = () => {
    const { onClose } = useDataContext()
