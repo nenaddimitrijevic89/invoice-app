@@ -36,6 +36,7 @@ const FieldItem = ({ control, index, rules, remove }) => {
             <Controller
                name={`items.${index}.total`}
                control={control}
+               rules={rules}
                render={({ field }) => (
                   <Input isReadOnly bg="transparent" border="none" {...field} />
                )}

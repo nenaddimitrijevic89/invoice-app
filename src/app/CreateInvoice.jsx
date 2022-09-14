@@ -4,6 +4,7 @@ import { useForm, Controller, useFieldArray } from 'react-hook-form'
 import { FaPlus } from 'react-icons/fa'
 
 import { useDataContext } from 'context/context'
+import { defaultValues } from 'models/default-values'
 import Input from 'components/Input'
 import Select from 'components/Select'
 import FieldItemLabels from 'components/FieldItemLabels'
@@ -15,7 +16,16 @@ const CreateInvoice = () => {
    const [triggerSave, setTriggerSave] = useState(false)
    const [status, setStatus] = useState('')
 
-   const { control, handleSubmit, watch, setValue } = useForm()
+   const {
+      control,
+      handleSubmit,
+      watch,
+      setValue,
+      formState: { errors },
+      reset,
+   } = useForm({
+      defaultValues,
+   })
    const { fields, append, remove } = useFieldArray({
       control,
       name: 'items',
@@ -34,13 +44,21 @@ const CreateInvoice = () => {
 
    const onSubmit = handleSubmit(values => {
       saveInvoice(values, status)
+      if (status === 'pending') {
+         reset({})
+      }
    })
+
+   const onDiscard = () => {
+      onClose()
+      reset(defaultValues)
+   }
 
    const rules = status === 'pending' ? { required: true } : { required: false }
 
    return (
       <form onSubmit={onSubmit}>
-         <VStack spacing={5} align="start" p="50px 40px 140px 160px">
+         <VStack spacing={5} align="start" p="50px 40px 200px 160px">
             <Text textStyle="h1">New Invoice</Text>
             <Text textStyle="h3" color="purpleLight">
                Bill From
@@ -126,11 +144,12 @@ const CreateInvoice = () => {
                   render={({ field }) => (
                      <Select
                         label="Payment Terms"
-                        placehoder="Select payment term..."
                         options={[
                            { label: 'Next 30 days', value: 30 },
+                           { label: 'Next 20 days', value: 20 },
                            { label: 'Next 10 days', value: 10 },
                         ]}
+                        errors={errors}
                         {...field}
                      />
                   )}
@@ -150,7 +169,7 @@ const CreateInvoice = () => {
                />
             ))}
             {fields.length > 0 && (
-               <Button onClick={() => setTriggerSave(trigger => !trigger)}>save item</Button>
+               <Button onClick={() => setTriggerSave(trigger => !trigger)}>Calculate total</Button>
             )}
             <Button
                variant="button3"
@@ -166,7 +185,7 @@ const CreateInvoice = () => {
          <InvoiceActionBar>
             <Flex w="100%" justify="space-between">
                <Box>
-                  <Button variant="button6" onClick={onClose}>
+                  <Button variant="button6" type="reset" onClick={onDiscard}>
                      Discard
                   </Button>
                </Box>

@@ -20,7 +20,7 @@ import InvoiceCard from 'components/InvoiceCard'
 const InvoiceList = () => {
    const { invoices, openCreateInvoice } = useDataContext()
    const color = useColorModeValue('#000', '#fff')
-   const [status, setStatus] = useState('Filter by status')
+   const [status, setStatus] = useState('clear')
 
    return (
       <Center>
@@ -45,13 +45,13 @@ const InvoiceList = () => {
                         as={Button}
                         rightIcon={<FaChevronDown color="#7c5dfa" />}
                      >
-                        {status}
+                        {status === 'clear' ? 'Filter by status' : status}
                      </MenuButton>
                      <MenuList textStyle="h3Light">
                         <MenuItem onClick={() => setStatus('paid')}>Paid</MenuItem>
                         <MenuItem onClick={() => setStatus('pending')}>Pending</MenuItem>
                         <MenuItem onClick={() => setStatus('draft')}>Draft</MenuItem>
-                        <MenuItem onClick={() => setStatus('Filter by status')}>Clear</MenuItem>
+                        <MenuItem onClick={() => setStatus('clear')}>Clear</MenuItem>
                      </MenuList>
                   </Menu>
                   <Button onClick={openCreateInvoice} leftIcon={<FaPlusCircle />}>
