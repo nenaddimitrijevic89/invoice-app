@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react'
 import { Box, Select as CSelect, Text } from '@chakra-ui/react'
 
 const Select = forwardRef((props, ref) => {
+   const error = !!props.errors[props.name]
    return (
       <Box w="100%">
          {props.label && (
@@ -9,7 +10,14 @@ const Select = forwardRef((props, ref) => {
                {props.label}
             </Text>
          )}
-         <CSelect variant="primary" ref={ref} {...props}>
+         <CSelect
+            variant="primary"
+            placeholder="Select..."
+            border={error ? '1px solid' : ''}
+            borderColor={error ? 'redDark' : ''}
+            ref={ref}
+            {...props}
+         >
             {props.options.map((option, i) => (
                <option key={`${option}_${i}`} value={option.value}>
                   {option.label}

@@ -8,21 +8,27 @@ import { DataContext } from './context'
 
 const DataProvider = ({ children }) => {
    const [data, setData] = useState([])
+   const [reserveData, setReserveData] = useState([])
    const [type, setType] = useState('')
-   const { isOpen, onToggle, onClose } = useDisclosure()
+   const { isOpen, onOpen, onClose } = useDisclosure()
+
+   const saveData = data => {
+      setData(data)
+      setReserveData(data)
+   }
 
    useEffect(() => {
-      fetchData(setData)
+      fetchData(saveData)
    }, [])
 
    const openCreateInvoice = () => {
       setType('create')
-      onToggle()
+      onOpen()
    }
 
    const openEditInvoice = () => {
       setType('edit')
-      onToggle()
+      onOpen()
    }
 
    const saveInvoice = useCallback(
@@ -32,18 +38,37 @@ const DataProvider = ({ children }) => {
             id: generateID(),
             status,
             paymentDue: paymentDueFormat(invoice.createdAt, invoice.paymentTerms),
-            total: invoice.items.reduce((prev, cur) => prev + Number(cur.total), 0),
+            total: invoice?.items?.reduce((prev, cur) => prev + Number(cur.total), 0),
          }
          console.log({ newInvoice })
          setData([...data, newInvoice])
+         setReserveData([...data, newInvoice])
          onClose()
       },
       [data, onClose]
    )
 
    const onFilterStatus = status => {
-      const filtered = data.filter(invoice => invoice.status === status)
-      setData(filtered)
+      if (status === 'clear') {
+         setData(reserveData)
+      } else {
+         const filteredData = reserveData.filter(invoice => invoice.status === status)
+         setData(filteredData)
+      }
+   }
+
+   const onMarkAsPaid = id => {
+      const updated = data.map(invoice =>
+         invoice.id === id
+            ? invoice.status === 'pending'
+               ? {
+                    ...invoice,
+                    status: 'paid',
+                 }
+               : invoice
+            : invoice
+      )
+      setData(updated)
    }
 
    const providerValues = {
@@ -55,6 +80,7 @@ const DataProvider = ({ children }) => {
       openEditInvoice,
       onClose,
       onFilterStatus,
+      onMarkAsPaid,
    }
 
    return <DataContext.Provider value={providerValues}>{children}</DataContext.Provider>

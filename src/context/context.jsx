@@ -19,6 +19,9 @@ export const DataContext = createContext({
    onFilterStatus: () => {
       throw new Error('onFilterStatus() either not implemented or not used within DataProvider')
    },
+   onMarkAsPaid: () => {
+      throw new Error('onMarkAsPaid() either not implemented or not used within DataProvider')
+   },
 })
 
 export const useDataContext = () => {
