@@ -58,8 +58,9 @@ const DataProvider = ({ children }) => {
    }
 
    const onMarkAsPaid = id => {
-      const updated = data.map(invoice =>
-         invoice.id === id
+      const updated = data.map(invoice => {
+         console.log(invoice.id, id)
+         return invoice.id === id
             ? invoice.status === 'pending'
                ? {
                     ...invoice,
@@ -67,7 +68,8 @@ const DataProvider = ({ children }) => {
                  }
                : invoice
             : invoice
-      )
+      })
+      console.log({ updated })
       setData(updated)
    }
 

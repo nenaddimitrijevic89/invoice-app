@@ -47,7 +47,7 @@ const FieldItem = ({ control, index, rules, remove }) => {
                type="button"
                onClick={() => remove(index)}
                variant="unstyled"
-               fontSize="24px"
+               fontSize={20}
                icon={<FaTrashAlt />}
             />
          </GridItem>

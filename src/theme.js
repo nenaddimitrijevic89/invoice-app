@@ -56,7 +56,7 @@ export const myTheme = extendTheme({
    },
    fontSizes: {
       small: '11px',
-      medium: '12px',
+      medium: '14px',
       large: '16px',
       xlarge: '20px',
       '2xlarge': '26px',
