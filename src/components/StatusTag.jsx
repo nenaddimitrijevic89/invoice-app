@@ -9,7 +9,7 @@ const StatusTag = ({ status }) => {
    const bg = status === 'paid' ? 'greenOpacity' : status === 'pending' ? 'orangeOpacity' : draftBg
 
    return (
-      <Tag size="lg" w="100%" h="48px" variant="subtle" color={color} bg={bg}>
+      <Tag size="lg" w="100%" h={12} variant="subtle" color={color} bg={bg}>
          <Flex justify="center" w="100%">
             <TagLeftIcon as={GoPrimitiveDot} />
             <TagLabel fontWeight="bold">{status}</TagLabel>

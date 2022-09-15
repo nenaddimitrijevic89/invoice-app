@@ -1,16 +1,24 @@
 import React from 'react'
-import { Text, Highlight, useColorModeValue, IconButton, Grid, GridItem } from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
+import {
+   Text,
+   Highlight,
+   useColorModeValue,
+   IconButton,
+   Grid,
+   GridItem,
+   Tooltip,
+} from '@chakra-ui/react'
 import { FaChevronRight } from 'react-icons/fa'
-
-import { useDataContext } from 'context/context'
 
 import StatusTag from './StatusTag'
 
 const InvoiceCard = ({ invoice }) => {
-   const { openEditInvoice } = useDataContext()
-   const bg = useColorModeValue('#fff', 'purpleBlackLight')
-   const color = useColorModeValue('purpleBlackLight', '#fff')
+   let navigate = useNavigate()
    const { id, paymentDue, clientName, total, status } = invoice
+
+   const color = useColorModeValue('purpleBlackLight', '#fff')
+   const bg = useColorModeValue('#fff', 'purpleBlackLight')
 
    return (
       <Grid
@@ -21,12 +29,12 @@ const InvoiceCard = ({ invoice }) => {
          px={8}
          py={4}
          alignItems="center"
-         rounded="8px"
+         rounded={8}
          textStyle="body1"
       >
          <GridItem colSpan={3}>
             <Text color={color} fontWeight="extraBold">
-               <Highlight query={['#']} styles={{ color: 'greyLight' }}>
+               <Highlight query={['#']} styles={{ color: 'greyDark' }}>
                   {`# ${id}`}
                </Highlight>
             </Text>
@@ -46,11 +54,13 @@ const InvoiceCard = ({ invoice }) => {
             <StatusTag status={status} />
          </GridItem>
          <GridItem colSpan={1} textAlign="end">
-            <IconButton
-               bg="transparent"
-               icon={<FaChevronRight color="#7c5dfa" />}
-               onClick={openEditInvoice}
-            />
+            <Tooltip label="View invoice details">
+               <IconButton
+                  bg="transparent"
+                  icon={<FaChevronRight color="#7c5dfa" />}
+                  onClick={() => navigate(`/invoice/${id}`)}
+               />
+            </Tooltip>
          </GridItem>
       </Grid>
    )

@@ -59,7 +59,7 @@ const InvoiceList = () => {
                   </Button>
                </Box>
             </Flex>
-            <VStack spacing={4}>
+            <VStack spacing={4} mb={14}>
                {invoices &&
                   invoices.map((invoice, i) => (
                      <InvoiceCard invoice={invoice} key={`${invoice.id}_${i}`} />

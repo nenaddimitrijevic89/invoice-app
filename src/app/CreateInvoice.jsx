@@ -34,7 +34,6 @@ const CreateInvoice = () => {
 
    useEffect(() => {
       items?.forEach((item, i) => {
-         console.log(item.price, item.quantity)
          if (item?.price && item?.quantity) {
             const total = Number(item.price) * Number(item.quantity)
             setValue(`items.${i}.total`, total)
