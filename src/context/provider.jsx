@@ -12,13 +12,13 @@ const DataProvider = ({ children }) => {
    const [type, setType] = useState('')
    const { isOpen, onOpen, onClose } = useDisclosure()
 
-   const saveData = data => {
+   const saveDataToGlobal = data => {
       setData(data)
       setReserveData(data)
    }
 
    useEffect(() => {
-      fetchData(saveData)
+      fetchData(saveDataToGlobal)
    }, [])
 
    const openCreateInvoice = () => {
@@ -58,9 +58,8 @@ const DataProvider = ({ children }) => {
    }
 
    const onMarkAsPaid = id => {
-      const updated = data.map(invoice => {
-         console.log(invoice.id, id)
-         return invoice.id === id
+      const updated = data.map(invoice =>
+         invoice.id === id
             ? invoice.status === 'pending'
                ? {
                     ...invoice,
@@ -68,9 +67,15 @@ const DataProvider = ({ children }) => {
                  }
                : invoice
             : invoice
-      })
-      console.log({ updated })
+      )
       setData(updated)
+      setReserveData(updated)
+   }
+
+   const onDelete = id => {
+      const filtered = reserveData.filter(invoice => invoice.id !== id)
+      setData(filtered)
+      setReserveData(filtered)
    }
 
    const providerValues = {
@@ -83,6 +88,7 @@ const DataProvider = ({ children }) => {
       onClose,
       onFilterStatus,
       onMarkAsPaid,
+      onDelete,
    }
 
    return <DataContext.Provider value={providerValues}>{children}</DataContext.Provider>

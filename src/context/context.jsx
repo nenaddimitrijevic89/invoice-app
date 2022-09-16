@@ -22,6 +22,9 @@ export const DataContext = createContext({
    onMarkAsPaid: () => {
       throw new Error('onMarkAsPaid() either not implemented or not used within DataProvider')
    },
+   onDelete: () => {
+      throw new Error('onDelete() either not implemented or not used within DataProvider')
+   },
 })
 
 export const useDataContext = () => {
