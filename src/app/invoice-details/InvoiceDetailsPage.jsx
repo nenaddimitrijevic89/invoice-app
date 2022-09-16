@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import {
    Box,
    Button,
@@ -10,19 +10,24 @@ import {
    Highlight,
    HStack,
    IconButton,
+   Spinner,
    Text,
    useColorModeValue,
+   useDisclosure,
    VStack,
 } from '@chakra-ui/react'
 import { FaChevronLeft } from 'react-icons/fa'
 
 import { useDataContext } from 'context/context'
 import StatusTag from 'components/StatusTag'
+import Modal from 'components/Modal'
 
 const InvoiceDetailsPage = () => {
-   const { invoices, onMarkAsPaid } = useDataContext()
+   const { invoices, onMarkAsPaid, onDelete } = useDataContext()
+   const { isOpen, onClose, onOpen } = useDisclosure()
    const [invoice, setInvoice] = useState()
    const { id } = useParams()
+   const navigate = useNavigate()
 
    const colorLight = useColorModeValue('purpleBlackLight', '#fff')
    const colorDark = useColorModeValue('purpleBlackLight', 'greyLight')
@@ -35,10 +40,16 @@ const InvoiceDetailsPage = () => {
       setInvoice(filtered)
    }, [id, invoices])
 
-   if (!invoice) return
+   const deleteInvoice = () => {
+      navigate('/')
+      onDelete(invoice.id)
+   }
+
+   if (!invoice) return <Spinner size="xl" />
 
    return (
       <Center>
+         <Modal id={invoice.id} isOpen={isOpen} onDelete={deleteInvoice} onClose={onClose} />
          <Box mt={10}>
             <Link to="/">
                <HStack>
@@ -62,7 +73,9 @@ const InvoiceDetailsPage = () => {
                </HStack>
                <HStack>
                   <Button variant="button3">Edit</Button>
-                  <Button variant="button5">Delete</Button>
+                  <Button variant="button5" onClick={onOpen}>
+                     Delete
+                  </Button>
                   <Button onClick={() => onMarkAsPaid(invoice.id)}>Mark as Paid</Button>
                </HStack>
             </Flex>

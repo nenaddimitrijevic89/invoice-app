@@ -32,8 +32,8 @@ const InvoiceCard = ({ invoice }) => {
          rounded={8}
          textStyle="body1"
       >
-         <GridItem colSpan={3}>
-            <Text color={color} fontWeight="extraBold">
+         <GridItem colSpan={2}>
+            <Text color={color} textStyle="h3">
                <Highlight query={['#']} styles={{ color: 'greyDark' }}>
                   {`# ${id}`}
                </Highlight>
@@ -42,11 +42,11 @@ const InvoiceCard = ({ invoice }) => {
          <GridItem colSpan={2}>
             <Text>{paymentDue}</Text>
          </GridItem>
-         <GridItem colSpan={2}>
+         <GridItem colSpan={3}>
             <Text>{clientName}</Text>
          </GridItem>
          <GridItem colSpan={2}>
-            <Text fontWeight="extrabold" color={color}>
+            <Text textStyle="h3" color={color}>
                £ {total}
             </Text>
          </GridItem>

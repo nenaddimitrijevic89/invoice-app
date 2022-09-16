@@ -17,18 +17,29 @@ import { FaChevronDown, FaPlusCircle } from 'react-icons/fa'
 import { useDataContext } from 'context/context'
 import InvoiceCard from 'components/InvoiceCard'
 
+import EmptyPageBanner from './EmptyPageBanner'
+
 const InvoiceList = () => {
-   const { invoices, openCreateInvoice } = useDataContext()
+   const { invoices, openCreateInvoice, onFilterStatus } = useDataContext()
    const color = useColorModeValue('#000', '#fff')
-   const [status, setStatus] = useState('clear')
+   const [status, setStatus] = useState('')
+
+   const filterByStatus = status => {
+      setStatus(status)
+      onFilterStatus(status)
+   }
 
    return (
       <Center>
          <Box>
-            <Flex justify="space-between" my={10}>
-               <VStack>
+            <Flex justify="space-between" my={10} w="900px">
+               <VStack align="start">
                   <Text textStyle="h1">Invoices</Text>
-                  <Text textStyle="body1">{`There are ${invoices.length} total invoice`}</Text>
+                  <Text textStyle="body1">
+                     {invoices.length > 0
+                        ? `There are ${invoices.length} total invoice`
+                        : `No invoices`}
+                  </Text>
                </VStack>
                <Box>
                   <Menu>
@@ -45,13 +56,13 @@ const InvoiceList = () => {
                         as={Button}
                         rightIcon={<FaChevronDown color="#7c5dfa" />}
                      >
-                        {status === 'clear' ? 'Filter by status' : status}
+                        {status === 'clear' || status === '' ? 'Filter by status' : status}
                      </MenuButton>
                      <MenuList textStyle="h3Light">
-                        <MenuItem onClick={() => setStatus('paid')}>Paid</MenuItem>
-                        <MenuItem onClick={() => setStatus('pending')}>Pending</MenuItem>
-                        <MenuItem onClick={() => setStatus('draft')}>Draft</MenuItem>
-                        <MenuItem onClick={() => setStatus('clear')}>Clear</MenuItem>
+                        <MenuItem onClick={() => filterByStatus('paid')}>Paid</MenuItem>
+                        <MenuItem onClick={() => filterByStatus('pending')}>Pending</MenuItem>
+                        <MenuItem onClick={() => filterByStatus('draft')}>Draft</MenuItem>
+                        <MenuItem onClick={() => filterByStatus('clear')}>Clear</MenuItem>
                      </MenuList>
                   </Menu>
                   <Button onClick={openCreateInvoice} leftIcon={<FaPlusCircle />}>
@@ -60,10 +71,13 @@ const InvoiceList = () => {
                </Box>
             </Flex>
             <VStack spacing={4} mb={14}>
-               {invoices &&
+               {invoices.length > 0 ? (
                   invoices.map((invoice, i) => (
                      <InvoiceCard invoice={invoice} key={`${invoice.id}_${i}`} />
-                  ))}
+                  ))
+               ) : (
+                  <EmptyPageBanner />
+               )}
             </VStack>
          </Box>
       </Center>
