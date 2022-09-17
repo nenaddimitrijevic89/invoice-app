@@ -1,9 +1,10 @@
 import { createContext, useContext } from 'react'
 
 export const DataContext = createContext({
-   data: [],
+   invoices: [],
    isOpen: false,
    type: '',
+   invoiceForEdit: null,
    saveInvoice: () => {
       throw new Error('setData() either not implemented or not used within DataProvider')
    },
@@ -24,6 +25,12 @@ export const DataContext = createContext({
    },
    onDelete: () => {
       throw new Error('onDelete() either not implemented or not used within DataProvider')
+   },
+   onEdit: () => {
+      throw new Error('onEdit() either not implemented or not used within DataProvider')
+   },
+   saveEditedInvoice: () => {
+      throw new Error('onEdit() either not implemented or not used within DataProvider')
    },
 })
 

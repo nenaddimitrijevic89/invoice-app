@@ -2054,6 +2054,11 @@
   resolved "https://registry.yarnpkg.com/@fontsource/spartan/-/spartan-4.5.8.tgz#376f6552690ca59998d2926a762f74e6e6324049"
   integrity sha512-g2zQ/Jh43stU3xDCZsJA10IXfmN5EKzvuhTf8OxAiYZIxGr/tFey5pC/TGrd57mdz32A1vDeEe+FTXWSIY1uXQ==
 
+"@hookform/error-message@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@hookform/error-message/-/error-message-2.0.0.tgz#9b1b037fd816ea9b1531c06aa7fab5f5154aa740"
+  integrity sha512-Y90nHzjgL2MP7GFy75kscdvxrCTjtyxGmOLLxX14nd08OXRIh9lMH/y9Kpdo0p1IPowJBiZMHyueg7p+yrqynQ==
+
 "@humanwhocodes/config-array@^0.10.4":
   version "0.10.4"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.10.4.tgz#01e7366e57d2ad104feea63e72248f22015c520c"

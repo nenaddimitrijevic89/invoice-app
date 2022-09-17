@@ -1,11 +1,12 @@
 import React from 'react'
-import { Grid, GridItem, IconButton } from '@chakra-ui/react'
+import { Box, Grid, GridItem, IconButton } from '@chakra-ui/react'
+import { ErrorMessage } from '@hookform/error-message'
 import { FaTrashAlt } from 'react-icons/fa'
 
 import Input from './Input'
 import { Controller } from 'react-hook-form'
 
-const FieldItem = ({ control, index, rules, remove }) => {
+const FieldItem = ({ control, index, rules, remove, errors }) => {
    return (
       <Grid templateColumns="repeat(12, 1fr)" gap={2} alignItems="center">
          <GridItem colSpan={4}>
@@ -13,7 +14,15 @@ const FieldItem = ({ control, index, rules, remove }) => {
                name={`items.${index}.name`}
                control={control}
                rules={rules}
-               render={({ field }) => <Input {...field} />}
+               render={({ field }) => (
+                  <Box
+                     rounded={8}
+                     border={!!errors?.items?.[index]?.name ? '1px solid' : ''}
+                     borderColor="redDark"
+                  >
+                     <Input {...field} />
+                  </Box>
+               )}
             />
          </GridItem>
          <GridItem colSpan={1}>
@@ -21,7 +30,15 @@ const FieldItem = ({ control, index, rules, remove }) => {
                name={`items.${index}.quantity`}
                control={control}
                rules={rules}
-               render={({ field }) => <Input type="number" px={2} {...field} />}
+               render={({ field }) => (
+                  <Box
+                     rounded={8}
+                     border={!!errors?.items?.[index]?.quantity ? '1px solid' : ''}
+                     borderColor="redDark"
+                  >
+                     <Input type="number" {...field} />
+                  </Box>
+               )}
             />
          </GridItem>
          <GridItem colSpan={3}>
@@ -29,7 +46,15 @@ const FieldItem = ({ control, index, rules, remove }) => {
                name={`items.${index}.price`}
                control={control}
                rules={rules}
-               render={({ field }) => <Input type="number" {...field} />}
+               render={({ field }) => (
+                  <Box
+                     rounded={8}
+                     border={!!errors?.items?.[index]?.price ? '1px solid' : ''}
+                     borderColor="redDark"
+                  >
+                     <Input type="number" {...field} />
+                  </Box>
+               )}
             />
          </GridItem>
          <GridItem colSpan={3}>
@@ -38,7 +63,22 @@ const FieldItem = ({ control, index, rules, remove }) => {
                control={control}
                rules={rules}
                render={({ field }) => (
-                  <Input isReadOnly bg="transparent" border="none" {...field} />
+                  <Box
+                     pos="relative"
+                     rounded={8}
+                     border={!!errors?.items?.[index]?.total ? '1px solid' : ''}
+                     borderColor="redDark"
+                     color="redDark"
+                  >
+                     <Input isReadOnly bg="transparent" border="none" {...field} />
+                     <Box pos="absolute" bottom="0" left="2">
+                        <ErrorMessage
+                           errors={errors}
+                           name={`items.${index}.total`}
+                           message="Add and calculate!"
+                        />
+                     </Box>
+                  </Box>
                )}
             />
          </GridItem>
