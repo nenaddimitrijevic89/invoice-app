@@ -2,6 +2,13 @@ import { forwardRef } from 'react'
 import { Text, Input as CInput, Box } from '@chakra-ui/react'
 
 const Input = forwardRef((props, ref) => {
+   const clientAddressError = !!props?.errors?.clientAddress
+   const senderAddressError = !!props?.errors?.senderAddress
+
+   const error = props?.errors
+      ? !!props.errors[props.name] || clientAddressError || senderAddressError
+      : false
+
    return (
       <Box w="100%">
          {props.label && (
@@ -9,7 +16,13 @@ const Input = forwardRef((props, ref) => {
                {props.label}
             </Text>
          )}
-         <CInput variant="primary" ref={ref} {...props} />
+         <CInput
+            variant="primary"
+            border={error ? '1px solid' : ''}
+            borderColor="redDark"
+            ref={ref}
+            {...props}
+         />
       </Box>
    )
 })

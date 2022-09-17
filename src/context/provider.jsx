@@ -1,14 +1,16 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDisclosure } from '@chakra-ui/react'
 
 import { fetchData } from 'services/dataService'
 import { generateID, paymentDueFormat } from 'utils/helpers'
+import { CLEAR, CREATE, EDIT, PAID, PENDING } from 'utils/constants'
 
 import { DataContext } from './context'
 
 const DataProvider = ({ children }) => {
    const [data, setData] = useState([])
    const [reserveData, setReserveData] = useState([])
+   const [invoiceForEdit, setInvoiceForEdit] = useState({})
    const [type, setType] = useState('')
    const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -22,34 +24,51 @@ const DataProvider = ({ children }) => {
    }, [])
 
    const openCreateInvoice = () => {
-      setType('create')
+      setType(CREATE)
       onOpen()
    }
 
    const openEditInvoice = () => {
-      setType('edit')
+      setType(EDIT)
       onOpen()
    }
 
-   const saveInvoice = useCallback(
-      (invoice, status) => {
-         const newInvoice = {
-            ...invoice,
-            id: generateID(),
-            status,
-            paymentDue: paymentDueFormat(invoice.createdAt, invoice.paymentTerms),
-            total: invoice?.items?.reduce((prev, cur) => prev + Number(cur.total), 0),
-         }
-         console.log({ newInvoice })
-         setData([...data, newInvoice])
-         setReserveData([...data, newInvoice])
-         onClose()
-      },
-      [data, onClose]
-   )
+   const saveInvoice = (invoice, status) => {
+      onFilterStatus(CLEAR)
+
+      const newInvoice = {
+         ...invoice,
+         id: generateID(),
+         status,
+         paymentDue: paymentDueFormat(invoice.createdAt, invoice.paymentTerms),
+         total: invoice?.items?.reduce((prev, cur) => prev + Number(cur.total), 0),
+      }
+
+      setData([...reserveData, newInvoice])
+      setReserveData([...reserveData, newInvoice])
+   }
+
+   const saveEditedInvoice = invoice => {
+      onFilterStatus(CLEAR)
+
+      const updated = reserveData.map(item =>
+         item.id === invoice.id
+            ? {
+                 ...invoice,
+                 status: PENDING,
+                 paymentDue: paymentDueFormat(invoice.createdAt, invoice.paymentTerms),
+                 total: Number(
+                    invoice?.items?.reduce((prev, cur) => prev + Number(cur.total), 0)
+                 ).toFixed(2),
+              }
+            : item
+      )
+      setData(updated)
+      setReserveData(updated)
+   }
 
    const onFilterStatus = status => {
-      if (status === 'clear') {
+      if (status === CLEAR) {
          setData(reserveData)
       } else {
          const filteredData = reserveData.filter(invoice => invoice.status === status)
@@ -57,13 +76,18 @@ const DataProvider = ({ children }) => {
       }
    }
 
+   const onEdit = id => {
+      const filtered = reserveData.find(invoice => invoice.id === id)
+      setInvoiceForEdit(filtered)
+   }
+
    const onMarkAsPaid = id => {
-      const updated = data.map(invoice =>
+      const updated = reserveData.map(invoice =>
          invoice.id === id
-            ? invoice.status === 'pending'
+            ? invoice.status === PENDING
                ? {
                     ...invoice,
-                    status: 'paid',
+                    status: PAID,
                  }
                : invoice
             : invoice
@@ -82,6 +106,7 @@ const DataProvider = ({ children }) => {
       invoices: data,
       isOpen,
       type,
+      invoiceForEdit,
       saveInvoice,
       openCreateInvoice,
       openEditInvoice,
@@ -89,6 +114,8 @@ const DataProvider = ({ children }) => {
       onFilterStatus,
       onMarkAsPaid,
       onDelete,
+      onEdit,
+      saveEditedInvoice,
    }
 
    return <DataContext.Provider value={providerValues}>{children}</DataContext.Provider>

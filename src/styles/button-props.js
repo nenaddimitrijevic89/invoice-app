@@ -6,7 +6,8 @@ export const buttonProps = {
       rounded: 'full',
       _disabled: {
          bg: 'grey',
-         cursor: 'none',
+         color: 'black',
+         cursor: 'not-allowed',
       },
    },
    sizes: {
@@ -31,7 +32,7 @@ export const buttonProps = {
          },
          _disabled: {
             bg: 'grey',
-            cursor: 'disabled',
+            cursor: 'not-allowed',
          },
       },
       button3: props => ({

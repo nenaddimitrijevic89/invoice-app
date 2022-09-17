@@ -2,13 +2,17 @@ import React from 'react'
 import { Box, Modal, ModalOverlay, useColorModeValue } from '@chakra-ui/react'
 
 import { useDataContext } from 'context/context'
+import { CREATE } from 'utils/constants'
+
 import CreateInvoice from './CreateInvoice'
 import EditInvoice from './EditInvoice'
 
 const InvoiceForm = () => {
    const { isOpen, type, onClose } = useDataContext()
+
    const bg = useColorModeValue('bgLight', 'bgDark')
-   const isCreate = type === 'create'
+
+   const isCreate = type === CREATE
 
    return (
       <Box display={isOpen ? 'flex' : 'none'}>
