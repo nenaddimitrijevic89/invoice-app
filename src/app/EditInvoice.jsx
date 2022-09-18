@@ -14,6 +14,7 @@ import InvoiceActionBar from 'components/InvoiceActionBar'
 const EditInvoice = () => {
    const { onClose, invoiceForEdit, saveEditedInvoice } = useDataContext()
    const [triggerSave, setTriggerSave] = useState(false)
+   const [hasItem, setHasItem] = useState(false)
 
    const {
       control,
@@ -22,7 +23,6 @@ const EditInvoice = () => {
       setValue,
       formState: { errors },
       reset,
-      clearErrors,
    } = useForm()
    const { fields, append, remove } = useFieldArray({
       control,
@@ -44,19 +44,19 @@ const EditInvoice = () => {
    }, [invoiceForEdit, reset])
 
    const onSubmit = handleSubmit(values => {
-      setTriggerSave(triggerSave => !triggerSave)
-      saveEditedInvoice(values)
-      onClose()
+      if (fields.length === 0) {
+         setHasItem(true)
+      } else {
+         setHasItem(false)
+         setTriggerSave(triggerSave => !triggerSave)
+         saveEditedInvoice(values)
+         onClose()
+      }
    })
 
    const onCancel = () => {
       reset({ ...invoiceForEdit })
       onClose()
-   }
-
-   const onCalculateTotal = () => {
-      clearErrors('items')
-      setTriggerSave(trigger => !trigger)
    }
 
    const rules = { required: true }
@@ -202,8 +202,9 @@ const EditInvoice = () => {
                   errors={errors}
                />
             ))}
-            {fields.length > 0 && <Button onClick={onCalculateTotal}>Calculate total</Button>}
             <Button
+               border={hasItem ? '1px solid' : ''}
+               borderColor="redDark"
                variant="button3"
                w="100%"
                leftIcon={<FaPlus />}
@@ -218,7 +219,11 @@ const EditInvoice = () => {
             <Button variant="button4" mr={3} type="reset" onClick={onCancel}>
                Cancel
             </Button>
-            <Button variant="primary" type="submit">
+            <Button
+               variant="primary"
+               type="submit"
+               onClick={() => setTriggerSave(trigger => !trigger)}
+            >
                Save Changes
             </Button>
          </InvoiceActionBar>

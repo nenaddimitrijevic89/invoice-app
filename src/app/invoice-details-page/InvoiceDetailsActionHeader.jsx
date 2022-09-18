@@ -1,14 +1,14 @@
 import React from 'react'
 import { Button, Flex, HStack, Text, useColorModeValue } from '@chakra-ui/react'
 
-import { DRAFT, PAID } from 'utils/constants'
+import { DRAFT, PAID, PENDING } from 'utils/constants'
 import StatusTag from 'components/StatusTag'
 
 const InvoiceDetailsActionHeader = ({ invoice, editInvoice, markAsPaid, onOpen }) => {
    const colorDark = useColorModeValue('purpleBlackLight', 'greyLight')
    const bgLight = useColorModeValue('#fff', 'purpleBlackDark')
 
-   const disabledEdit = invoice.status === PAID
+   const disabledEdit = invoice.status === PENDING || invoice.status === PAID
    const disabledMarkAsPaid = invoice.status === DRAFT || invoice.status === PAID
 
    const disabledPaid = Number(invoice.total) === 0

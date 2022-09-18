@@ -15,6 +15,7 @@ import InvoiceActionBar from 'components/InvoiceActionBar'
 const CreateInvoice = () => {
    const { onClose, saveInvoice, status, onSetStatus } = useDataContext()
    const [triggerSave, setTriggerSave] = useState(false)
+   const [hasItem, setHasItem] = useState(false)
 
    const {
       control,
@@ -23,7 +24,6 @@ const CreateInvoice = () => {
       setValue,
       formState: { errors },
       reset,
-      clearErrors,
    } = useForm({
       defaultValues,
    })
@@ -43,19 +43,19 @@ const CreateInvoice = () => {
    }, [items, setValue, triggerSave])
 
    const onSubmit = handleSubmit(values => {
-      saveInvoice(values, status)
-      reset({ ...defaultValues })
-      onClose()
+      if (status === PENDING && fields.length === 0) {
+         setHasItem(true)
+      } else {
+         setHasItem(false)
+         saveInvoice(values, status)
+         reset({ ...defaultValues })
+         onClose()
+      }
    })
 
    const onDiscard = () => {
       reset({ ...defaultValues })
       onClose()
-   }
-
-   const onCalculateTotal = () => {
-      clearErrors('items')
-      setTriggerSave(trigger => !trigger)
    }
 
    const rules = status === PENDING ? { required: true } : { required: false }
@@ -196,8 +196,9 @@ const CreateInvoice = () => {
                   errors={errors}
                />
             ))}
-            {fields.length > 0 && <Button onClick={onCalculateTotal}>Calculate total</Button>}
             <Button
+               border={hasItem ? '1px solid' : ''}
+               borderColor="redDark"
                variant="button3"
                w="100%"
                leftIcon={<FaPlus />}
@@ -216,10 +217,25 @@ const CreateInvoice = () => {
                   </Button>
                </Box>
                <Box>
-                  <Button variant="button4" mr={3} type="submit" onClick={() => onSetStatus(DRAFT)}>
+                  <Button
+                     variant="button4"
+                     mr={3}
+                     type="submit"
+                     onClick={() => {
+                        setTriggerSave(trigger => !trigger)
+                        onSetStatus(DRAFT)
+                     }}
+                  >
                      Save as Draft
                   </Button>
-                  <Button variant="primary" type="submit" onClick={() => onSetStatus(PENDING)}>
+                  <Button
+                     variant="primary"
+                     type="submit"
+                     onClick={() => {
+                        setTriggerSave(trigger => !trigger)
+                        onSetStatus(PENDING)
+                     }}
+                  >
                      Save & Send
                   </Button>
                </Box>
