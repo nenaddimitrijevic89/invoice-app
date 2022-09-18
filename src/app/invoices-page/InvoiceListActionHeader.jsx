@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
    Box,
    Button,
@@ -17,17 +17,16 @@ import { useDataContext } from 'context/context'
 import { CLEAR, DRAFT, PAID, PENDING } from 'utils/constants'
 
 const InvoiceListActionHeader = ({ invoices }) => {
-   const { openCreateInvoice, onFilterStatus } = useDataContext()
-   const [status, setStatus] = useState('')
+   const { openCreateInvoice, onFilterStatus, status, onSetStatus } = useDataContext()
 
    const color = useColorModeValue('#000', '#fff')
 
    const filterByStatus = status => {
-      //   setStatus(status)
+      onSetStatus(status)
       onFilterStatus(status)
    }
 
-   //    const statusText = status === CLEAR || status === '' ? 'Filter by status' : status
+   const statusText = status === CLEAR || status === '' ? 'Filter by status' : status
 
    return (
       <Flex justify="space-between" my={10} w="900px">
@@ -52,7 +51,7 @@ const InvoiceListActionHeader = ({ invoices }) => {
                   as={Button}
                   rightIcon={<FaChevronDown color="#7c5dfa" />}
                >
-                  Filter by status
+                  {statusText}
                </MenuButton>
                <MenuList textStyle="h3Light">
                   <MenuItem onClick={() => filterByStatus(PAID)}>Paid</MenuItem>
@@ -61,7 +60,13 @@ const InvoiceListActionHeader = ({ invoices }) => {
                   <MenuItem onClick={() => filterByStatus(CLEAR)}>Clear</MenuItem>
                </MenuList>
             </Menu>
-            <Button onClick={openCreateInvoice} leftIcon={<FaPlusCircle />}>
+            <Button
+               onClick={openCreateInvoice}
+               py={2}
+               pl={2}
+               pr={7}
+               leftIcon={<FaPlusCircle fontSize={38} />}
+            >
                New Invoice
             </Button>
          </Box>

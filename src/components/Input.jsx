@@ -2,12 +2,7 @@ import { forwardRef } from 'react'
 import { Text, Input as CInput, Box } from '@chakra-ui/react'
 
 const Input = forwardRef((props, ref) => {
-   const clientAddressError = !!props?.errors?.clientAddress
-   const senderAddressError = !!props?.errors?.senderAddress
-
-   const error = props?.errors
-      ? !!props.errors[props.name] || clientAddressError || senderAddressError
-      : false
+   const error = !!props?.errors
 
    return (
       <Box w="100%">

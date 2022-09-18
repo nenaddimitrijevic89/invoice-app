@@ -5,6 +5,7 @@ export const DataContext = createContext({
    isOpen: false,
    type: '',
    invoiceForEdit: null,
+   status: '',
    saveInvoice: () => {
       throw new Error('setData() either not implemented or not used within DataProvider')
    },
@@ -30,7 +31,10 @@ export const DataContext = createContext({
       throw new Error('onEdit() either not implemented or not used within DataProvider')
    },
    saveEditedInvoice: () => {
-      throw new Error('onEdit() either not implemented or not used within DataProvider')
+      throw new Error('saveEditedInvoice() either not implemented or not used within DataProvider')
+   },
+   onSetStatus: () => {
+      throw new Error('onSetStatus() either not implemented or not used within DataProvider')
    },
 })
 

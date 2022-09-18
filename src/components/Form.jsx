@@ -1,19 +1,17 @@
 import React, { useEffect, useState } from 'react'
-import { Button, HStack, Text, VStack, Flex, Box } from '@chakra-ui/react'
+import { Button, HStack, Text, VStack } from '@chakra-ui/react'
 import { useForm, Controller, useFieldArray } from 'react-hook-form'
 import { FaPlus } from 'react-icons/fa'
 
 import { useDataContext } from 'context/context'
-import { defaultValues } from 'models/default-values'
-import { DRAFT, options, PENDING } from 'utils/constants'
 import Input from 'components/Input'
 import Select from 'components/Select'
 import FieldItemLabels from 'components/FieldItemLabels'
 import FieldItem from 'components/FieldItem'
 import InvoiceActionBar from 'components/InvoiceActionBar'
 
-const CreateInvoice = () => {
-   const { onClose, saveInvoice, status, onSetStatus } = useDataContext()
+const Form = () => {
+   const { onClose, invoiceForEdit, saveEditedInvoice } = useDataContext()
    const [triggerSave, setTriggerSave] = useState(false)
 
    const {
@@ -23,15 +21,13 @@ const CreateInvoice = () => {
       setValue,
       formState: { errors },
       reset,
-      clearErrors,
-   } = useForm({
-      defaultValues,
-   })
+   } = useForm()
    const { fields, append, remove } = useFieldArray({
       control,
       name: 'items',
    })
    const items = watch('items')
+   console.log({ invoiceForEdit })
 
    useEffect(() => {
       items?.forEach((item, i) => {
@@ -42,28 +38,21 @@ const CreateInvoice = () => {
       })
    }, [items, setValue, triggerSave])
 
+   useEffect(() => {
+      reset({ ...invoiceForEdit })
+   }, [invoiceForEdit, reset])
+
    const onSubmit = handleSubmit(values => {
-      saveInvoice(values, status)
-      reset({ ...defaultValues })
+      saveEditedInvoice(values)
       onClose()
    })
 
-   const onDiscard = () => {
-      reset({ ...defaultValues })
-      onClose()
-   }
-
-   const onCalculateTotal = () => {
-      clearErrors('items')
-      setTriggerSave(trigger => !trigger)
-   }
-
-   const rules = status === PENDING ? { required: true } : { required: false }
+   const rules = { required: true }
 
    return (
       <form onSubmit={onSubmit}>
          <VStack spacing={5} align="start" p="50px 40px 200px 160px">
-            <Text textStyle="h1">New Invoice</Text>
+            <Text textStyle="h1">Edit #{invoiceForEdit.id}</Text>
             <Text textStyle="h3" color="purpleLight">
                Bill From
             </Text>
@@ -71,34 +60,26 @@ const CreateInvoice = () => {
                name="senderAddress.street"
                control={control}
                rules={rules}
-               render={({ field }) => (
-                  <Input label="Street Address" errors={errors?.senderAddress?.street} {...field} />
-               )}
+               render={({ field }) => <Input label="Street Address" {...field} />}
             />
             <HStack>
                <Controller
                   name="senderAddress.city"
                   control={control}
                   rules={rules}
-                  render={({ field }) => (
-                     <Input label="City" errors={errors?.senderAddress?.city} {...field} />
-                  )}
+                  render={({ field }) => <Input label="City" id="city" {...field} />}
                />
                <Controller
                   name="senderAddress.postCode"
                   control={control}
                   rules={rules}
-                  render={({ field }) => (
-                     <Input label="Post Code" errors={errors?.senderAddress?.postCode} {...field} />
-                  )}
+                  render={({ field }) => <Input label="Post Code" {...field} />}
                />
                <Controller
                   name="senderAddress.country"
                   control={control}
                   rules={rules}
-                  render={({ field }) => (
-                     <Input label="Country" errors={errors?.senderAddress?.country} {...field} />
-                  )}
+                  render={({ field }) => <Input label="Country" {...field} />}
                />
             </HStack>
             <Text textStyle="h3" color="purpleLight" pt={5}>
@@ -108,50 +89,38 @@ const CreateInvoice = () => {
                name="clientName"
                control={control}
                rules={rules}
-               render={({ field }) => (
-                  <Input label="Client's Name" errors={errors?.clientName} {...field} />
-               )}
+               render={({ field }) => <Input label="Client's Name" {...field} />}
             />
             <Controller
                name="clientEmail"
                control={control}
                rules={rules}
-               render={({ field }) => (
-                  <Input label="Client's Email" errors={errors?.clientEmail} {...field} />
-               )}
+               render={({ field }) => <Input label="Client's Email" {...field} />}
             />
             <Controller
                name="clientAddress.street"
                control={control}
                rules={rules}
-               render={({ field }) => (
-                  <Input label="Street Address" errors={errors?.clientAddress?.street} {...field} />
-               )}
+               render={({ field }) => <Input label="Street Address" {...field} />}
             />
             <HStack>
                <Controller
                   name="clientAddress.city"
                   control={control}
                   rules={rules}
-                  render={({ field }) => (
-                     <Input label="City" errors={errors?.clientAddress?.city} {...field} />
-                  )}
+                  render={({ field }) => <Input label="City" {...field} />}
                />
                <Controller
                   name="clientAddress.postCode"
                   control={control}
                   rules={rules}
-                  render={({ field }) => (
-                     <Input label="Post Code" errors={errors?.clientAddress?.postCode} {...field} />
-                  )}
+                  render={({ field }) => <Input label="Post Code" {...field} />}
                />
                <Controller
                   name="clientAddress.country"
                   control={control}
                   rules={rules}
-                  render={({ field }) => (
-                     <Input label="Country" errors={errors?.clientAddress?.country} {...field} />
-                  )}
+                  render={({ field }) => <Input label="Country" {...field} />}
                />
             </HStack>
             <HStack w="100%">
@@ -159,14 +128,7 @@ const CreateInvoice = () => {
                   name="createdAt"
                   control={control}
                   rules={rules}
-                  render={({ field }) => (
-                     <Input
-                        label="Invoice Date"
-                        type="date"
-                        errors={errors?.createdAt}
-                        {...field}
-                     />
-                  )}
+                  render={({ field }) => <Input label="Invoice Date" type="date" {...field} />}
                />
                <Controller
                   name="paymentTerms"
@@ -175,8 +137,12 @@ const CreateInvoice = () => {
                   render={({ field }) => (
                      <Select
                         label="Payment Terms"
-                        options={options}
-                        errors={errors?.paymentTerms}
+                        options={[
+                           { label: 'Next 30 days', value: 30 },
+                           { label: 'Next 20 days', value: 20 },
+                           { label: 'Next 10 days', value: 10 },
+                        ]}
+                        errors={errors}
                         {...field}
                      />
                   )}
@@ -193,10 +159,11 @@ const CreateInvoice = () => {
                   index={index}
                   rules={rules}
                   remove={remove}
-                  errors={errors}
                />
             ))}
-            {fields.length > 0 && <Button onClick={onCalculateTotal}>Calculate total</Button>}
+            {fields.length > 0 && (
+               <Button onClick={() => setTriggerSave(trigger => !trigger)}>Calculate total</Button>
+            )}
             <Button
                variant="button3"
                w="100%"
@@ -209,24 +176,15 @@ const CreateInvoice = () => {
          </VStack>
 
          <InvoiceActionBar>
-            <Flex w="100%" justify="space-between">
-               <Box>
-                  <Button variant="button6" type="reset" onClick={onDiscard}>
-                     Discard
-                  </Button>
-               </Box>
-               <Box>
-                  <Button variant="button4" mr={3} type="submit" onClick={() => onSetStatus(DRAFT)}>
-                     Save as Draft
-                  </Button>
-                  <Button variant="primary" type="submit" onClick={() => onSetStatus(PENDING)}>
-                     Save & Send
-                  </Button>
-               </Box>
-            </Flex>
+            <Button variant="button4" mr={3} type="reset" onClick={onClose}>
+               Cancel
+            </Button>
+            <Button variant="primary" type="submit">
+               Save Changes
+            </Button>
          </InvoiceActionBar>
       </form>
    )
 }
 
-export default CreateInvoice
+export default Form

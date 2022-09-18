@@ -11,6 +11,8 @@ const InvoiceDetailsActionHeader = ({ invoice, editInvoice, markAsPaid, onOpen }
    const disabledEdit = invoice.status === PAID
    const disabledMarkAsPaid = invoice.status === DRAFT || invoice.status === PAID
 
+   const disabledPaid = Number(invoice.total) === 0
+
    return (
       <Flex
          my={5}
@@ -33,7 +35,7 @@ const InvoiceDetailsActionHeader = ({ invoice, editInvoice, markAsPaid, onOpen }
             <Button variant="button5" onClick={onOpen}>
                Delete
             </Button>
-            <Button onClick={markAsPaid} isDisabled={disabledMarkAsPaid}>
+            <Button onClick={markAsPaid} isDisabled={disabledMarkAsPaid || disabledPaid}>
                Mark as Paid
             </Button>
          </HStack>

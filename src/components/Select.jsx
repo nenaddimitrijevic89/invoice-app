@@ -2,7 +2,8 @@ import React, { forwardRef } from 'react'
 import { Box, Select as CSelect, Text } from '@chakra-ui/react'
 
 const Select = forwardRef((props, ref) => {
-   const error = !!props.errors[props.name]
+   const error = !!props.errors
+
    return (
       <Box w="100%">
          {props.label && (
