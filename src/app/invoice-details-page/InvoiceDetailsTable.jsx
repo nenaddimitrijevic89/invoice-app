@@ -17,6 +17,9 @@ const InvoiceDetailsTable = ({ invoice }) => {
    const bgMedium = useColorModeValue('bgLight', 'purpleBlackLight')
    const bgDark = useColorModeValue('greyLight', 'greyBlack')
 
+   const disabledPaid = Number(invoice.total) === 0
+   console.log(typeof invoice.total)
+
    return (
       <Box p={8} rounded={8} bg={bgLight} w="900px" textStyle="body1">
          <Flex justify="space-between" color={colorDark}>
@@ -114,6 +117,8 @@ const InvoiceDetailsTable = ({ invoice }) => {
          <Flex
             bg={bgDark}
             color={colorDark}
+            border={disabledPaid ? '1px solid' : ''}
+            borderColor="darkRed"
             p={8}
             rounded="0 0 8px 8px"
             justify="space-between"

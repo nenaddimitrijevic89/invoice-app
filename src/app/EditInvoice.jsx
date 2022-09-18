@@ -76,26 +76,34 @@ const EditInvoice = () => {
                name="senderAddress.street"
                control={control}
                rules={rules}
-               render={({ field }) => <Input label="Street Address" errors={errors} {...field} />}
+               render={({ field }) => (
+                  <Input label="Street Address" errors={errors?.senderAddress?.street} {...field} />
+               )}
             />
             <HStack>
                <Controller
                   name="senderAddress.city"
                   control={control}
                   rules={rules}
-                  render={({ field }) => <Input label="City" errors={errors} {...field} />}
+                  render={({ field }) => (
+                     <Input label="City" errors={errors?.senderAddress?.city} {...field} />
+                  )}
                />
                <Controller
                   name="senderAddress.postCode"
                   control={control}
                   rules={rules}
-                  render={({ field }) => <Input label="Post Code" errors={errors} {...field} />}
+                  render={({ field }) => (
+                     <Input label="Post Code" errors={errors?.senderAddress?.postCode} {...field} />
+                  )}
                />
                <Controller
                   name="senderAddress.country"
                   control={control}
                   rules={rules}
-                  render={({ field }) => <Input label="Country" errors={errors} {...field} />}
+                  render={({ field }) => (
+                     <Input label="Country" errors={errors?.senderAddress?.country} {...field} />
+                  )}
                />
             </HStack>
             <Text textStyle="h3" color="purpleLight" pt={5}>
@@ -105,38 +113,50 @@ const EditInvoice = () => {
                name="clientName"
                control={control}
                rules={rules}
-               render={({ field }) => <Input label="Client's Name" errors={errors} {...field} />}
+               render={({ field }) => (
+                  <Input label="Client's Name" errors={errors?.clientName} {...field} />
+               )}
             />
             <Controller
                name="clientEmail"
                control={control}
                rules={rules}
-               render={({ field }) => <Input label="Client's Email" errors={errors} {...field} />}
+               render={({ field }) => (
+                  <Input label="Client's Email" errors={errors?.clientEmail} {...field} />
+               )}
             />
             <Controller
                name="clientAddress.street"
                control={control}
                rules={rules}
-               render={({ field }) => <Input label="Street Address" errors={errors} {...field} />}
+               render={({ field }) => (
+                  <Input label="Street Address" errors={errors?.clientAddress?.street} {...field} />
+               )}
             />
             <HStack>
                <Controller
                   name="clientAddress.city"
                   control={control}
                   rules={rules}
-                  render={({ field }) => <Input label="City" errors={errors} {...field} />}
+                  render={({ field }) => (
+                     <Input label="City" errors={errors?.clientAddress?.city} {...field} />
+                  )}
                />
                <Controller
                   name="clientAddress.postCode"
                   control={control}
                   rules={rules}
-                  render={({ field }) => <Input label="Post Code" errors={errors} {...field} />}
+                  render={({ field }) => (
+                     <Input label="Post Code" errors={errors?.clientAddress?.postCode} {...field} />
+                  )}
                />
                <Controller
                   name="clientAddress.country"
                   control={control}
                   rules={rules}
-                  render={({ field }) => <Input label="Country" errors={errors} {...field} />}
+                  render={({ field }) => (
+                     <Input label="Country" errors={errors?.clientAddress?.country} {...field} />
+                  )}
                />
             </HStack>
             <HStack w="100%">
@@ -145,7 +165,13 @@ const EditInvoice = () => {
                   control={control}
                   rules={rules}
                   render={({ field }) => (
-                     <Input label="Invoice Date" type="date" errors={errors} {...field} />
+                     <Input
+                        label="Invoice Date"
+                        type="date"
+                        errors={errors?.createdAt}
+                        isDisabled={!!invoiceForEdit?.createdAt}
+                        {...field}
+                     />
                   )}
                />
                <Controller
@@ -153,7 +179,12 @@ const EditInvoice = () => {
                   control={control}
                   rules={rules}
                   render={({ field }) => (
-                     <Select label="Payment Terms" options={options} errors={errors} {...field} />
+                     <Select
+                        label="Payment Terms"
+                        options={options}
+                        errors={errors?.paymentTerms}
+                        {...field}
+                     />
                   )}
                />
             </HStack>

@@ -12,6 +12,7 @@ const DataProvider = ({ children }) => {
    const [reserveData, setReserveData] = useState([])
    const [invoiceForEdit, setInvoiceForEdit] = useState({})
    const [type, setType] = useState('')
+   const [status, setStatus] = useState('')
    const { isOpen, onOpen, onClose } = useDisclosure()
 
    const saveDataToGlobal = data => {
@@ -68,6 +69,8 @@ const DataProvider = ({ children }) => {
    }
 
    const onFilterStatus = status => {
+      setStatus(status)
+
       if (status === CLEAR) {
          setData(reserveData)
       } else {
@@ -82,6 +85,8 @@ const DataProvider = ({ children }) => {
    }
 
    const onMarkAsPaid = id => {
+      setStatus(CLEAR)
+
       const updated = reserveData.map(invoice =>
          invoice.id === id
             ? invoice.status === PENDING
@@ -97,6 +102,8 @@ const DataProvider = ({ children }) => {
    }
 
    const onDelete = id => {
+      setStatus(CLEAR)
+
       const filtered = reserveData.filter(invoice => invoice.id !== id)
       setData(filtered)
       setReserveData(filtered)
@@ -107,6 +114,7 @@ const DataProvider = ({ children }) => {
       isOpen,
       type,
       invoiceForEdit,
+      status,
       saveInvoice,
       openCreateInvoice,
       openEditInvoice,
@@ -116,6 +124,7 @@ const DataProvider = ({ children }) => {
       onDelete,
       onEdit,
       saveEditedInvoice,
+      onSetStatus: setStatus,
    }
 
    return <DataContext.Provider value={providerValues}>{children}</DataContext.Provider>
