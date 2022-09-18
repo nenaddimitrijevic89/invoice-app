@@ -1,10 +1,9 @@
 import React from 'react'
 import { Box, Grid, GridItem, IconButton } from '@chakra-ui/react'
-import { ErrorMessage } from '@hookform/error-message'
+import { Controller } from 'react-hook-form'
 import { FaTrashAlt } from 'react-icons/fa'
 
 import Input from './Input'
-import { Controller } from 'react-hook-form'
 
 const FieldItem = ({ control, index, rules, remove, errors }) => {
    return (
@@ -68,16 +67,8 @@ const FieldItem = ({ control, index, rules, remove, errors }) => {
                      rounded={8}
                      border={!!errors?.items?.[index]?.total ? '1px solid' : ''}
                      borderColor="redDark"
-                     color="redDark"
                   >
                      <Input isReadOnly bg="transparent" border="none" {...field} />
-                     <Box pos="absolute" bottom="0" left="2">
-                        <ErrorMessage
-                           errors={errors}
-                           name={`items.${index}.total`}
-                           message="Add and calculate!"
-                        />
-                     </Box>
                   </Box>
                )}
             />

@@ -1,3 +1,4 @@
+import React from 'react'
 import {
    Button,
    Modal as CModal,
@@ -8,7 +9,6 @@ import {
    Text,
    useColorModeValue,
 } from '@chakra-ui/react'
-import React from 'react'
 
 const Modal = ({ id, isOpen, onDelete, onClose }) => {
    const colorLight = useColorModeValue('purpleBlackLight', '#fff')
