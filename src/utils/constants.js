@@ -6,7 +6,7 @@ export const CLEAR = 'clear'
 export const CREATE = 'create'
 export const EDIT = 'edit'
 
-export const options = [
+export const OPTIONS = [
    { label: '30 days', value: 30 },
    { label: '20 days', value: 20 },
    { label: '10 days', value: 10 },

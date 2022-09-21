@@ -5,7 +5,7 @@ import { FaPlus } from 'react-icons/fa'
 
 import { useDataContext } from 'context/context'
 import { defaultValues } from 'models/default-values'
-import { DRAFT, options, PENDING } from 'utils/constants'
+import { DRAFT, OPTIONS, PENDING } from 'utils/constants'
 import Input from 'components/Input'
 import Select from 'components/Select'
 import FieldItemLabels from 'components/FieldItemLabels'
@@ -175,7 +175,7 @@ const CreateInvoice = () => {
                   render={({ field }) => (
                      <Select
                         label="Payment Terms"
-                        options={options}
+                        options={OPTIONS}
                         errors={errors?.paymentTerms}
                         {...field}
                      />

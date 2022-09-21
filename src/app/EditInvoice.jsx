@@ -4,7 +4,7 @@ import { useForm, Controller, useFieldArray } from 'react-hook-form'
 import { FaPlus } from 'react-icons/fa'
 
 import { useDataContext } from 'context/context'
-import { options } from 'utils/constants'
+import { OPTIONS } from 'utils/constants'
 import Input from 'components/Input'
 import Select from 'components/Select'
 import FieldItemLabels from 'components/FieldItemLabels'
@@ -181,7 +181,7 @@ const EditInvoice = () => {
                   render={({ field }) => (
                      <Select
                         label="Payment Terms"
-                        options={options}
+                        options={OPTIONS}
                         errors={errors?.paymentTerms}
                         {...field}
                      />
