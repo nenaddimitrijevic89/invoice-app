@@ -18,6 +18,11 @@ const InvoiceDetailsPage = () => {
 
    useEffect(() => {
       const filtered = invoices.find(invoice => invoice.id === id)
+
+      if (!filtered) {
+         navigate('/')
+      }
+
       setInvoice(filtered)
    }, [id, invoices])
 
