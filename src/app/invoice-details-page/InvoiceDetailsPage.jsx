@@ -24,7 +24,7 @@ const InvoiceDetailsPage = () => {
       }
 
       setInvoice(filtered)
-   }, [id, invoices])
+   }, [id, invoices, navigate])
 
    const deleteInvoice = () => {
       navigate('/')
