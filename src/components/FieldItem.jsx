@@ -16,7 +16,7 @@ const FieldItem = ({ control, index, rules, remove, errors }) => {
                render={({ field }) => (
                   <Box
                      rounded={8}
-                     border={!!errors?.items?.[index]?.name ? '1px solid' : ''}
+                     border={errors?.items?.[index]?.name ? '1px solid' : ''}
                      borderColor="redDark"
                   >
                      <Input {...field} />
@@ -32,7 +32,7 @@ const FieldItem = ({ control, index, rules, remove, errors }) => {
                render={({ field }) => (
                   <Box
                      rounded={8}
-                     border={!!errors?.items?.[index]?.quantity ? '1px solid' : ''}
+                     border={errors?.items?.[index]?.quantity ? '1px solid' : ''}
                      borderColor="redDark"
                   >
                      <Input type="number" {...field} />
@@ -48,7 +48,7 @@ const FieldItem = ({ control, index, rules, remove, errors }) => {
                render={({ field }) => (
                   <Box
                      rounded={8}
-                     border={!!errors?.items?.[index]?.price ? '1px solid' : ''}
+                     border={errors?.items?.[index]?.price ? '1px solid' : ''}
                      borderColor="redDark"
                   >
                      <Input type="number" {...field} />
@@ -65,7 +65,7 @@ const FieldItem = ({ control, index, rules, remove, errors }) => {
                   <Box
                      pos="relative"
                      rounded={8}
-                     border={!!errors?.items?.[index]?.total ? '1px solid' : ''}
+                     border={errors?.items?.[index]?.total ? '1px solid' : ''}
                      borderColor="redDark"
                   >
                      <Input isReadOnly bg="transparent" border="none" {...field} />
