@@ -13,19 +13,19 @@ const SideBar = () => {
          bg="purpleBlackDark"
          boxShadow="0 4px 12px 0 rgba(0, 0, 0, 0.05)"
          rounded="0 30px 30px 0"
-         w="100px"
+         w={{ base: '50px', lg: '100px' }}
          flexDir="column"
          justifyContent="space-between"
       >
          <Flex
-            h="100px"
+            h={{ base: '75px', lg: '100px' }}
             flexDir="column"
             alignItems="center"
             justify="center"
             bg="purpleLight"
             rounded="0 30px 30px 0"
          >
-            <Image src={R.images.topLogo} w={10} />
+            <Image src={R.images.topLogo} w={{ base: 5, lg: 10 }} />
          </Flex>
          <Flex flexDir="column" alignItems="center">
             <ColorModeSwitcher my={5} />
