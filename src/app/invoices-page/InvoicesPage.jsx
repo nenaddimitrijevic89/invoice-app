@@ -10,8 +10,8 @@ const InvoicesPage = () => {
    const { invoices } = useDataContext()
 
    return (
-      <Center>
-         <Box>
+      <Center ml="100px">
+         <Box overflowX="auto">
             <InvoiceListActionHeader invoices={invoices} />
             <InvoiceList invoices={invoices} />
          </Box>
