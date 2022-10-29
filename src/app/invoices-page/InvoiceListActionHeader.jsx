@@ -29,7 +29,7 @@ const InvoiceListActionHeader = ({ invoices }) => {
    const statusText = status === CLEAR || status === '' ? 'Filter by status' : status
 
    return (
-      <Flex justify="space-between" my={10} w="900px">
+      <Flex justify="space-between" my={10} w={{ base: '100%', lg: '900px' }}>
          <VStack align="start">
             <Text textStyle="h1">Invoices</Text>
             <Text textStyle="body1">
