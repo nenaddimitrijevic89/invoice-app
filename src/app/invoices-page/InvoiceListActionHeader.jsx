@@ -28,12 +28,14 @@ const InvoiceListActionHeader = ({ invoices }) => {
 
    const statusText = status === CLEAR || status === '' ? 'Filter by status' : status
 
+   const hasInvoices = invoices.length > 0
+
    return (
       <Flex justify="space-between" my={10} w={{ base: '100%', lg: '900px' }}>
          <VStack align="start">
             <Text textStyle="h1">Invoices</Text>
             <Text textStyle="body1">
-               {invoices.length > 0 ? `There are ${invoices.length} total invoice` : `No invoices`}
+               {hasInvoices ? `There are ${invoices.length} total invoice` : `No invoices`}
             </Text>
          </VStack>
          <Box>
