@@ -1,6 +1,6 @@
 export const textStyles = {
    h1: {
-      fontSize: '3xlarge',
+      fontSize: ['xlarge', '2xlarge', '2xlarge', '3xlarge', '3xlarge'],
       fontWeight: 'bold',
       lineHeight: '36px',
       lineSpacing: -1,
