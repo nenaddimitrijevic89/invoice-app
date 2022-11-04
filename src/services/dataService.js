@@ -1,3 +1,5 @@
+import Invoice from 'models/Invoice'
+
 export const fetchData = async setData => {
    try {
       const response = await fetch('data.json', {
@@ -7,7 +9,9 @@ export const fetchData = async setData => {
          },
       })
       const data = await response.json()
-      setData(data)
+      const mapped = data.map(invoice => new Invoice(invoice))
+
+      setData(mapped)
    } catch (err) {
       console.error(err)
    }
