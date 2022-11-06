@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDisclosure } from '@chakra-ui/react'
 
-import { fetchData } from 'services/dataService'
+import { invoiceService } from 'services/dataService'
 import { generateID, paymentDueFormat } from 'utils/helpers'
 import { CLEAR, CREATE, EDIT, PAID, PENDING } from 'utils/constants'
 
@@ -21,7 +21,7 @@ const DataProvider = ({ children }) => {
    }
 
    useEffect(() => {
-      fetchData(saveDataToGlobal)
+      invoiceService.fetchInvoices(saveDataToGlobal)
    }, [])
 
    const openCreateInvoice = () => {
