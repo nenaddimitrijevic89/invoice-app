@@ -1,3 +1,5 @@
+import Item from './Item'
+
 class Invoice {
    constructor({
       id,
@@ -33,7 +35,7 @@ class Invoice {
          postCode: clientAddress.postCode,
          country: clientAddress.country,
       }
-      this.items = items
+      this.items = items?.map(item => new Item(item))
       this.total = total
    }
 }
