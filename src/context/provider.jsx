@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDisclosure } from '@chakra-ui/react'
 
+import Invoice from 'models/Invoice'
 import { invoiceService } from 'services/dataService'
 import { generateID, paymentDueFormat } from 'utils/helpers'
 import { CLEAR, CREATE, EDIT, PAID, PENDING } from 'utils/constants'
@@ -54,14 +55,14 @@ const DataProvider = ({ children }) => {
 
       const updated = reserveData.map(item =>
          item.id === invoice.id
-            ? {
+            ? new Invoice({
                  ...invoice,
                  status: PENDING,
                  paymentDue: paymentDueFormat(invoice.createdAt, invoice.paymentTerms),
                  total: Number(
                     invoice?.items?.reduce((prev, cur) => prev + Number(cur.total), 0)
                  ).toFixed(2),
-              }
+              })
             : item
       )
       setData(updated)
