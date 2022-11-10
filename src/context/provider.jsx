@@ -38,13 +38,13 @@ const DataProvider = ({ children }) => {
    const saveInvoice = (invoice, status) => {
       onFilterStatus(CLEAR)
 
-      const newInvoice = {
+      const newInvoice = new Invoice({
          ...invoice,
          id: generateID(),
          status,
          paymentDue: paymentDueFormat(invoice.createdAt, invoice.paymentTerms),
          total: invoice?.items?.reduce((prev, cur) => prev + Number(cur.total), 0),
-      }
+      })
 
       setData([...reserveData, newInvoice])
       setReserveData([...reserveData, newInvoice])
