@@ -91,10 +91,10 @@ const DataProvider = ({ children }) => {
       const updated = reserveData.map(invoice =>
          invoice.id === id
             ? invoice.status === PENDING
-               ? {
+               ? new Invoice({
                     ...invoice,
                     status: PAID,
-                 }
+                 })
                : invoice
             : invoice
       )
