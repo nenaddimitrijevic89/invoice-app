@@ -1,3 +1,4 @@
+import AppError from 'models/AppError'
 import Invoice from 'models/Invoice'
 
 class InvoiceService {
@@ -17,9 +18,12 @@ class InvoiceService {
          const mapped = data.map(invoice => new Invoice(invoice))
 
          callback(mapped)
-      } catch (err) {
-         //TODO: Return error for toast message
-         console.error(err)
+      } catch (error) {
+         return new AppError({
+            title: 'Error',
+            message: 'Something went wrong',
+            error,
+         })
       }
    }
 }
