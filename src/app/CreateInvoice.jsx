@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, HStack, Text, VStack, Flex, Box } from '@chakra-ui/react'
+import { Button, HStack, Text, VStack, Flex, Box, useToast } from '@chakra-ui/react'
 import { useForm, Controller, useFieldArray } from 'react-hook-form'
 import { FaPlus } from 'react-icons/fa'
 
@@ -16,6 +16,7 @@ const CreateInvoice = () => {
    const { onClose, saveInvoice, status, onSetStatus } = useDataContext()
    const [triggerSave, setTriggerSave] = useState(false)
    const [hasItem, setHasItem] = useState(false)
+   const toast = useToast()
 
    const {
       control,
@@ -50,6 +51,11 @@ const CreateInvoice = () => {
          saveInvoice(values, status)
          reset({ ...defaultValues })
          onClose()
+         toast({
+            title: 'Invoice created.',
+            position: 'top-right',
+            colorScheme: 'purple',
+         })
       }
    })
 
