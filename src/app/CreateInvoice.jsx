@@ -54,7 +54,6 @@ const CreateInvoice = () => {
          toast({
             title: 'Invoice created.',
             position: 'top-right',
-            colorScheme: 'purple',
          })
       }
    })
