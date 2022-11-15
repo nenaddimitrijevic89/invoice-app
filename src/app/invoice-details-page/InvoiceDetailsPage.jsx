@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Box, Center, Spinner, useDisclosure } from '@chakra-ui/react'
+import { Box, Center, Spinner, useDisclosure, useToast } from '@chakra-ui/react'
 
 import { useDataContext } from 'context/context'
 import Modal from 'components/Modal'
@@ -15,6 +15,7 @@ const InvoiceDetailsPage = () => {
    const [invoice, setInvoice] = useState()
    const { id } = useParams()
    const navigate = useNavigate()
+   const toast = useToast()
 
    useEffect(() => {
       const filtered = invoices.find(invoice => invoice.id === id)
@@ -29,6 +30,10 @@ const InvoiceDetailsPage = () => {
    const deleteInvoice = () => {
       navigate('/')
       onDelete(invoice.id)
+      toast({
+         title: 'Invoice deleted.',
+         position: 'top-right',
+      })
    }
 
    const editInvoice = () => {
