@@ -11,6 +11,7 @@ import Select from 'components/Select'
 import FieldItemLabels from 'components/FieldItemLabels'
 import FieldItem from 'components/FieldItem'
 import InvoiceActionBar from 'components/InvoiceActionBar'
+import { successToastProps } from 'shared/toastConfig'
 
 const CreateInvoice = () => {
    const { onClose, saveInvoice, status, onSetStatus } = useDataContext()
@@ -53,7 +54,7 @@ const CreateInvoice = () => {
          onClose()
          toast({
             title: 'Invoice created.',
-            position: 'top-right',
+            ...successToastProps,
          })
       }
    })
