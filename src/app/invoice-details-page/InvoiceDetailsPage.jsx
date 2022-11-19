@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { Box, Center, Spinner, useDisclosure, useToast } from '@chakra-ui/react'
 
 import { useDataContext } from 'context/context'
+import { successToastProps } from 'shared/toastConfig'
 import Modal from 'components/Modal'
 import GoBackButton from 'components/GoBackButton'
 
@@ -32,7 +33,7 @@ const InvoiceDetailsPage = () => {
       onDelete(invoice.id)
       toast({
          title: 'Invoice deleted.',
-         position: 'top-right',
+         ...successToastProps,
       })
    }
 
@@ -43,6 +44,10 @@ const InvoiceDetailsPage = () => {
 
    const markAsPaid = () => {
       onMarkAsPaid(invoice.id)
+      toast({
+         title: 'Invoice paid.',
+         ...successToastProps,
+      })
    }
 
    if (!invoice) return <Spinner size="xl" />
