@@ -6,12 +6,12 @@ import { FaPlus } from 'react-icons/fa'
 import { useDataContext } from 'context/context'
 import { defaultValues } from 'models/default-values'
 import { DRAFT, OPTIONS, PENDING } from 'utils/constants'
+import { successToastProps } from 'shared/toastConfig'
 import Input from 'components/Input'
 import Select from 'components/Select'
 import FieldItemLabels from 'components/FieldItemLabels'
 import FieldItem from 'components/FieldItem'
 import InvoiceActionBar from 'components/InvoiceActionBar'
-import { successToastProps } from 'shared/toastConfig'
 
 const CreateInvoice = () => {
    const { onClose, saveInvoice, status, onSetStatus } = useDataContext()
