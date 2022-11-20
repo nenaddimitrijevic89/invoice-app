@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Highlight, HStack, Text, VStack } from '@chakra-ui/react'
+import { Button, Highlight, HStack, Text, useToast, VStack } from '@chakra-ui/react'
 import { useForm, Controller, useFieldArray } from 'react-hook-form'
 import { FaPlus } from 'react-icons/fa'
 
 import { useDataContext } from 'context/context'
 import { OPTIONS } from 'utils/constants'
+import { successToastProps } from 'shared/toastConfig'
 import Input from 'components/Input'
 import Select from 'components/Select'
 import FieldItemLabels from 'components/FieldItemLabels'
@@ -15,6 +16,7 @@ const EditInvoice = () => {
    const { onClose, invoiceForEdit, saveEditedInvoice } = useDataContext()
    const [triggerSave, setTriggerSave] = useState(false)
    const [hasItem, setHasItem] = useState(false)
+   const toast = useToast()
 
    const {
       control,
@@ -51,6 +53,10 @@ const EditInvoice = () => {
          setTriggerSave(triggerSave => !triggerSave)
          saveEditedInvoice(values)
          onClose()
+         toast({
+            title: 'Invoice completed.',
+            ...successToastProps,
+         })
       }
    })
 
