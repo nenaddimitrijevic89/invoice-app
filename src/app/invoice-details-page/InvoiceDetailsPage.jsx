@@ -40,6 +40,10 @@ const InvoiceDetailsPage = () => {
    const editInvoice = () => {
       onEdit(invoice.id)
       openEditInvoice()
+      toast({
+         title: 'Try to fill all fields.',
+         ...successToastProps,
+      })
    }
 
    const markAsPaid = () => {
