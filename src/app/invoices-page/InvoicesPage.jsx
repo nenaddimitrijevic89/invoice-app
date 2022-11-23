@@ -9,8 +9,6 @@ import InvoiceList from './InvoiceList'
 const InvoicesPage = () => {
    const { invoices } = useDataContext()
 
-   console.log({ invoices })
-
    return (
       <Center ml="100px">
          <Box overflowX="auto">
