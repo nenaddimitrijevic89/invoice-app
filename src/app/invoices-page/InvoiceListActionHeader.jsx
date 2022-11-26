@@ -16,6 +16,8 @@ import { FaChevronDown, FaPlusCircle } from 'react-icons/fa'
 import { useDataContext } from 'context/context'
 import { CLEAR, DRAFT, PAID, PENDING } from 'utils/constants'
 
+const menuListItems = [PAID, PENDING, DRAFT, CLEAR]
+
 const InvoiceListActionHeader = ({ invoices }) => {
    const { openCreateInvoice, onFilterStatus, status, onSetStatus } = useDataContext()
 
@@ -56,10 +58,11 @@ const InvoiceListActionHeader = ({ invoices }) => {
                   {statusText}
                </MenuButton>
                <MenuList textStyle="h3Light">
-                  <MenuItem onClick={() => filterByStatus(PAID)}>Paid</MenuItem>
-                  <MenuItem onClick={() => filterByStatus(PENDING)}>Pending</MenuItem>
-                  <MenuItem onClick={() => filterByStatus(DRAFT)}>Draft</MenuItem>
-                  <MenuItem onClick={() => filterByStatus(CLEAR)}>Clear</MenuItem>
+                  {menuListItems.map(item => (
+                     <MenuItem key={item} onClick={() => filterByStatus(item)}>
+                        {item}
+                     </MenuItem>
+                  ))}
                </MenuList>
             </Menu>
             <Button
