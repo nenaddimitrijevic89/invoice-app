@@ -62,6 +62,10 @@ const CreateInvoice = () => {
    const onDiscard = () => {
       reset({ ...defaultValues })
       onClose()
+      toast({
+         title: 'Invoice canceled.',
+         ...successToastProps,
+      })
    }
 
    const rules = status === PENDING ? { required: true } : { required: false }
