@@ -1,3 +1,5 @@
+import { Buffer } from 'buffer'
+
 const generateTwoRandomLetters = () => {
    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
