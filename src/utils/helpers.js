@@ -48,3 +48,14 @@ export const prepareInvoiceAttachment = invoice => {
            </div>
            `
 }
+
+export const saveBlobFile = (blob, fileName) => {
+   const a = document.createElement('a')
+
+   document.body.appendChild(a)
+   a.style = 'display: none'
+
+   a.href = window.URL.createObjectURL(blob)
+   a.download = fileName
+   a.click()
+}
