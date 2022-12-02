@@ -1,4 +1,8 @@
 export const strings = {
-   rs: {},
-   en: {},
+   rs: {
+      invoices: 'Invoices',
+   },
+   en: {
+      invoices: 'Fakture',
+   },
 }
