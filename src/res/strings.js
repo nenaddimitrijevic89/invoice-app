@@ -3,10 +3,12 @@ export const strings = {
       invoices: 'Invoices',
       newInvoice: 'New Invoice',
       billFrom: 'Bill From',
+      filter: 'Filter by status',
    },
    en: {
       invoices: 'Fakture',
       newInvoice: 'Nova Faktura',
       billFrom: 'Račun od',
+      filter: 'Filtriraj',
    },
 }
