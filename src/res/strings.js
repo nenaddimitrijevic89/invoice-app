@@ -5,6 +5,9 @@ export const strings = {
       noInvoices: 'No invoices',
       billFrom: 'Bill From',
       filter: 'Filter by status',
+      form: {
+         streetAddress: 'Street Address',
+      },
    },
    en: {
       invoices: 'Fakture',
@@ -12,5 +15,8 @@ export const strings = {
       noInvoices: 'Nema faktura',
       billFrom: 'Račun od',
       filter: 'Filtriraj',
+      form: {
+         streetAddress: 'Ulica',
+      },
    },
 }
