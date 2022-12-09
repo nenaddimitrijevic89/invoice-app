@@ -6,7 +6,8 @@ export const strings = {
       billFrom: 'Bill From',
       filter: 'Filter by status',
       form: {
-         streetAddress: 'Street Address',
+         street: 'Street Address',
+         city: 'City',
       },
    },
    en: {
@@ -16,7 +17,8 @@ export const strings = {
       billFrom: 'Račun od',
       filter: 'Filtriraj',
       form: {
-         streetAddress: 'Ulica',
+         street: 'Ulica',
+         city: 'Grad',
       },
    },
 }
