@@ -1,5 +1,5 @@
 export const strings = {
-   rs: {
+   en: {
       invoices: 'Invoices',
       newInvoice: 'New Invoice',
       noInvoices: 'No invoices',
@@ -8,9 +8,10 @@ export const strings = {
       form: {
          street: 'Street Address',
          city: 'City',
+         postCode: 'Post Code',
       },
    },
-   en: {
+   rs: {
       invoices: 'Fakture',
       newInvoice: 'Nova Faktura',
       noInvoices: 'Nema faktura',
@@ -19,6 +20,7 @@ export const strings = {
       form: {
          street: 'Ulica',
          city: 'Grad',
+         postCode: 'Poštanski broj',
       },
    },
 }
