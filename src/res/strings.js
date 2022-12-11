@@ -9,6 +9,7 @@ export const strings = {
          street: 'Street Address',
          city: 'City',
          postCode: 'Post Code',
+         country: 'Country',
       },
    },
    rs: {
@@ -21,6 +22,7 @@ export const strings = {
          street: 'Ulica',
          city: 'Grad',
          postCode: 'Poštanski broj',
+         country: 'Država',
       },
    },
 }
