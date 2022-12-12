@@ -10,6 +10,7 @@ export const strings = {
          city: 'City',
          postCode: 'Post Code',
          country: 'Country',
+         client: `Client's Name`,
       },
    },
    rs: {
@@ -23,6 +24,7 @@ export const strings = {
          city: 'Grad',
          postCode: 'Poštanski broj',
          country: 'Država',
+         client: 'Ime klijenta',
       },
    },
 }
