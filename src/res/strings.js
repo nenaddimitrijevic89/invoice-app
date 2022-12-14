@@ -13,6 +13,7 @@ export const strings = {
          client: `Client's Name`,
          clientEmail: `Client's Email`,
          invoiceDate: 'Invoice Date',
+         paymentTerms: 'Payment Terms',
       },
    },
    rs: {
@@ -29,6 +30,7 @@ export const strings = {
          client: 'Ime klijenta',
          clientEmail: 'Email klijenta',
          invoiceDate: 'Datum fakture',
+         paymentTerms: 'Uslovi Plaćanja',
       },
    },
 }
