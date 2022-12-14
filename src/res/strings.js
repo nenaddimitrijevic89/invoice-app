@@ -12,6 +12,7 @@ export const strings = {
          country: 'Country',
          client: `Client's Name`,
          clientEmail: `Client's Email`,
+         invoiceDate: 'Invoice Date',
       },
    },
    rs: {
@@ -27,6 +28,7 @@ export const strings = {
          country: 'Država',
          client: 'Ime klijenta',
          clientEmail: 'Email klijenta',
+         invoiceDate: 'Datum fakture',
       },
    },
 }
