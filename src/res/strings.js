@@ -11,6 +11,7 @@ export const strings = {
          postCode: 'Post Code',
          country: 'Country',
          client: `Client's Name`,
+         clientEmail: `Client's Email`,
       },
    },
    rs: {
@@ -25,6 +26,7 @@ export const strings = {
          postCode: 'Poštanski broj',
          country: 'Država',
          client: 'Ime klijenta',
+         clientEmail: 'Email klijenta',
       },
    },
 }
