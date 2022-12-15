@@ -5,6 +5,7 @@ export const strings = {
       noInvoices: 'No invoices',
       billFrom: 'Bill From',
       billTo: 'Bill To',
+      itemList: 'Item List',
       filter: 'Filter by status',
       form: {
          street: 'Street Address',
@@ -23,6 +24,7 @@ export const strings = {
       noInvoices: 'Nema faktura',
       billFrom: 'Račun od',
       billTo: 'Račun za',
+      itemList: 'Lista proizvoda',
       filter: 'Filtriraj',
       form: {
          street: 'Ulica',
