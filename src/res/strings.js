@@ -6,6 +6,7 @@ export const strings = {
       billFrom: 'Bill From',
       billTo: 'Bill To',
       itemList: 'Item List',
+      addNewItem: 'Add New Item',
       filter: 'Filter by status',
       form: {
          street: 'Street Address',
@@ -25,6 +26,7 @@ export const strings = {
       billFrom: 'Račun od',
       billTo: 'Račun za',
       itemList: 'Lista proizvoda',
+      addNewItem: 'Dodaj novi proizvod',
       filter: 'Filtriraj',
       form: {
          street: 'Ulica',
