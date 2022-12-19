@@ -9,6 +9,7 @@ export const strings = {
       addNewItem: 'Add New Item',
       discard: 'Discard',
       saveDraft: 'Save as Draft',
+      saveSend: 'Save & Send',
       filter: 'Filter by status',
       form: {
          street: 'Street Address',
@@ -31,6 +32,7 @@ export const strings = {
       addNewItem: 'Dodaj novi proizvod',
       discard: 'Odbaci',
       saveDraft: 'Sačuvaj kao nacrt',
+      saveSend: 'Snimi i pošalji',
       filter: 'Filtriraj',
       form: {
          street: 'Ulica',
