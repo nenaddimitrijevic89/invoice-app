@@ -10,6 +10,7 @@ export const strings = {
       discard: 'Discard',
       saveDraft: 'Save as Draft',
       saveSend: 'Save & Send',
+      saveChanges: 'Save Changes',
       filter: 'Filter by status',
       form: {
          street: 'Street Address',
