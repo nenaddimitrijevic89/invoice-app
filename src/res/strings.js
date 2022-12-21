@@ -34,6 +34,7 @@ export const strings = {
       discard: 'Odbaci',
       saveDraft: 'Sačuvaj kao nacrt',
       saveSend: 'Snimi i pošalji',
+      saveChanges: 'Sačuvaj promene',
       filter: 'Filtriraj',
       form: {
          street: 'Ulica',
