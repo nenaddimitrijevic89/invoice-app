@@ -11,6 +11,7 @@ export const strings = {
       saveDraft: 'Save as Draft',
       saveSend: 'Save & Send',
       saveChanges: 'Save Changes',
+      cancel: 'Cancel',
       filter: 'Filter by status',
       form: {
          street: 'Street Address',
