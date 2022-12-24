@@ -40,6 +40,7 @@ export const strings = {
       cancel: 'Otkazati',
       filter: 'Filtriraj',
       nothingHere: 'Ovde nema ničega',
+      creteByClick: 'Create invoice by clicking New Invoice button and get started',
       form: {
          street: 'Ulica',
          city: 'Grad',
