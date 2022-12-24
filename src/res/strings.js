@@ -13,6 +13,7 @@ export const strings = {
       saveChanges: 'Save Changes',
       cancel: 'Cancel',
       filter: 'Filter by status',
+      nothingHere: 'There is nothing here',
       form: {
          street: 'Street Address',
          city: 'City',
