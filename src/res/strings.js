@@ -39,6 +39,7 @@ export const strings = {
       saveChanges: 'Sačuvaj promene',
       cancel: 'Otkazati',
       filter: 'Filtriraj',
+      nothingHere: 'Ovde nema ničega',
       form: {
          street: 'Ulica',
          city: 'Grad',
