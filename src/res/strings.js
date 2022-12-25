@@ -14,6 +14,7 @@ export const strings = {
       cancel: 'Cancel',
       filter: 'Filter by status',
       nothingHere: 'There is nothing here',
+      creteByClick: 'Create invoice by clicking New Invoice button and get started',
       form: {
          street: 'Street Address',
          city: 'City',
