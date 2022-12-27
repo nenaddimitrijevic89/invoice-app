@@ -15,6 +15,7 @@ export const strings = {
       filter: 'Filter by status',
       nothingHere: 'There is nothing here',
       creteByClick: 'Create invoice by clicking New Invoice button and get started',
+      itemName: 'Item Name',
       form: {
          street: 'Street Address',
          city: 'City',
@@ -42,6 +43,7 @@ export const strings = {
       filter: 'Filtriraj',
       nothingHere: 'Ovde nema ničega',
       creteByClick: 'Kreirajte fakturu klikom na dugme Nova faktura i počnite',
+      itemName: 'Item Name',
       form: {
          street: 'Ulica',
          city: 'Grad',
