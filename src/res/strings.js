@@ -41,7 +41,7 @@ export const strings = {
       cancel: 'Otkazati',
       filter: 'Filtriraj',
       nothingHere: 'Ovde nema ničega',
-      creteByClick: 'Create invoice by clicking New Invoice button and get started',
+      creteByClick: 'Kreirajte fakturu klikom na dugme Nova faktura i počnite',
       form: {
          street: 'Ulica',
          city: 'Grad',
