@@ -43,7 +43,7 @@ export const strings = {
       filter: 'Filtriraj',
       nothingHere: 'Ovde nema ničega',
       creteByClick: 'Kreirajte fakturu klikom na dugme Nova faktura i počnite',
-      itemName: 'Item Name',
+      itemName: 'Ime stavke',
       form: {
          street: 'Ulica',
          city: 'Grad',
