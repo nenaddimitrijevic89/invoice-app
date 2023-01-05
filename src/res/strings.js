@@ -19,6 +19,7 @@ export const strings = {
       qty: 'Qty',
       price: 'Price',
       total: 'Total',
+      goBack: 'Go back',
       form: {
          street: 'Street Address',
          city: 'City',
