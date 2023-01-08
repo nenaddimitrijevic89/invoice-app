@@ -5,6 +5,8 @@ import { ColorModeScript } from '@chakra-ui/react'
 import DataProvider from 'context/provider'
 import App from './App'
 
+import './i18n/config'
+
 const container = document.getElementById('root')
 const root = ReactDOM.createRoot(container)
 
