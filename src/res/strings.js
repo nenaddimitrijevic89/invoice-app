@@ -51,7 +51,7 @@ export const strings = {
       qty: 'Količina',
       price: 'Cena',
       total: 'Ukupno',
-      goBack: 'Go back',
+      goBack: 'Nazad',
       form: {
          street: 'Ulica',
          city: 'Grad',
