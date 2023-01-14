@@ -9,8 +9,6 @@ const EmptyPageBanner = () => {
    const colorDark = useColorModeValue('purpleBlackLight', 'greyLight')
    const { t } = useTranslation()
 
-   console.log({ t })
-
    return (
       <VStack width="400px" spacing={10} textAlign="center" mt={10}>
          <Image src={R.images.empty} />
