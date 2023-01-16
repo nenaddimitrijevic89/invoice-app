@@ -1,17 +1,18 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
-import { strings } from 'res/strings'
+import { en } from './en'
+import { rs } from './rs'
 
 i18n.use(initReactI18next).init({
    fallbackLng: 'en',
-   lng: 'en',
+   lng: 'rs',
    resources: {
       en: {
-         translations: strings.en,
+         translations: en,
       },
       rs: {
-         translations: strings.rs,
+         translations: rs,
       },
    },
    ns: ['translations'],
