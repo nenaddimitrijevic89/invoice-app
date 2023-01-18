@@ -5,9 +5,9 @@ import { Highlight, Image, Text, useColorModeValue, VStack } from '@chakra-ui/re
 import { R } from 'res/R'
 
 const EmptyPageBanner = () => {
+   const { t } = useTranslation()
    const colorLight = useColorModeValue('purpleBlackLight', '#fff')
    const colorDark = useColorModeValue('purpleBlackLight', 'greyLight')
-   const { t } = useTranslation()
 
    return (
       <VStack width="400px" spacing={10} textAlign="center" mt={10}>
