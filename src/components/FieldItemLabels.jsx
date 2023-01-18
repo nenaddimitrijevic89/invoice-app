@@ -4,6 +4,7 @@ import { Grid, GridItem, Text } from '@chakra-ui/react'
 
 const FieldItemLabels = () => {
    const { t } = useTranslation()
+
    return (
       <Grid templateColumns="repeat(12, 1fr)" gap={2} w="100%">
          <GridItem colSpan={4}>
