@@ -13,11 +13,11 @@ const EmptyPageBanner = () => {
       <VStack width="400px" spacing={10} textAlign="center" mt={10}>
          <Image src={R.images.empty} />
          <Text textStyle="h2" color={colorLight}>
-            {t('nothingHere')}
+            {t('description.nothingHere')}
          </Text>
          <Text color={colorDark}>
             <Highlight query={['New Invoice']} styles={{ fontWeight: '700', color: colorDark }}>
-               {t('creteByClick')}
+               {t('description.creteByClick')}
             </Highlight>
          </Text>
       </VStack>

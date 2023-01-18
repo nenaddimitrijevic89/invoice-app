@@ -11,7 +11,7 @@ const GoBackButton = () => {
       <Link to="/">
          <HStack>
             <IconButton bg="transparent" icon={<FaChevronLeft color="#7c5dfa" />} />
-            <Text textStyle="h3">{t('goBack')}</Text>
+            <Text textStyle="h3">{t('common.goBack')}</Text>
          </HStack>
       </Link>
    )
