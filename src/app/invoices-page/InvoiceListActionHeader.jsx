@@ -11,6 +11,7 @@ import {
    useColorModeValue,
    VStack,
 } from '@chakra-ui/react'
+import { useTranslation } from 'react-i18next'
 import { FaChevronDown, FaPlusCircle } from 'react-icons/fa'
 
 import { useDataContext } from 'context/context'
@@ -20,6 +21,7 @@ const menuListItems = [PAID, PENDING, DRAFT, CLEAR]
 
 const InvoiceListActionHeader = ({ invoices }) => {
    const { openCreateInvoice, onFilterStatus, status, onSetStatus } = useDataContext()
+   const { t } = useTranslation()
 
    const color = useColorModeValue('#000', '#fff')
 
@@ -35,7 +37,7 @@ const InvoiceListActionHeader = ({ invoices }) => {
    return (
       <Flex justify="space-between" my={10} w={{ base: '100%', lg: '900px' }}>
          <VStack align="start">
-            <Text textStyle="h1">Invoices</Text>
+            <Text textStyle="h1">{t('invoices')}</Text>
             <Text textStyle="body1">
                {hasInvoices ? `There are ${invoices.length} total invoice` : `No invoices`}
             </Text>
