@@ -6,7 +6,7 @@ import { rs } from './rs'
 
 i18n.use(initReactI18next).init({
    fallbackLng: 'en',
-   lng: 'rs',
+   lng: 'en',
    resources: {
       en: {
          translations: en,
