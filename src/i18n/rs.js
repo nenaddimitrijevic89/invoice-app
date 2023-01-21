@@ -30,6 +30,12 @@ export const rs = {
       goBack: 'Nazad',
       delete: 'Obriši',
       confirmDelete: 'Potvrdi brisanje',
+      paid: 'paid',
+      pending: 'pending',
+      draft: 'draft',
+      clear: 'clear',
+      creat: 'create',
+      edit: 'edit',
    },
    description: {
       nothingHere: 'Ovde nema ničega',
