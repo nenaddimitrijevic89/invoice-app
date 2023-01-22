@@ -30,6 +30,12 @@ export const en = {
       goBack: 'Go back',
       delete: 'Delete',
       confirmDelete: 'Confirm Deletion',
+      paid: 'paid',
+      pending: 'pending',
+      draft: 'draft',
+      clear: 'clear',
+      creat: 'create',
+      edit: 'edit',
    },
    description: {
       nothingHere: 'There is nothing here',
