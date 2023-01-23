@@ -1,10 +1,12 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button, Flex, HStack, Text, useColorModeValue } from '@chakra-ui/react'
 
 import { DRAFT, PAID, PENDING } from 'utils/constants'
 import StatusTag from 'components/StatusTag'
 
 const InvoiceDetailsActionHeader = ({ invoice, editInvoice, markAsPaid, onOpen }) => {
+   const { t } = useTranslation()
    const colorDark = useColorModeValue('purpleBlackLight', 'greyLight')
    const bgLight = useColorModeValue('#fff', 'purpleBlackDark')
 
@@ -25,18 +27,18 @@ const InvoiceDetailsActionHeader = ({ invoice, editInvoice, markAsPaid, onOpen }
          textStyle="body1"
       >
          <HStack spacing={3}>
-            <Text color={colorDark}>Status</Text>
+            <Text color={colorDark}>{t('common.status')}</Text>
             <StatusTag status={invoice.status} />
          </HStack>
          <HStack>
             <Button variant="button3" onClick={editInvoice} isDisabled={disabledEdit}>
-               Edit
+               {t('common.edit')}
             </Button>
             <Button variant="button5" onClick={onOpen}>
-               Delete
+               {t('common.delete')}
             </Button>
             <Button onClick={markAsPaid} isDisabled={disabledMarkAsPaid || disabledPaid}>
-               Mark as Paid
+               {t('common.markAsPaid')}
             </Button>
          </HStack>
       </Flex>
