@@ -25,7 +25,7 @@ export const rs = {
       saveDraft: 'Sačuvaj kao nacrt',
       saveSend: 'Snimi i pošalji',
       saveChanges: 'Sačuvaj promene',
-      cancel: 'Otkazati',
+      cancel: 'Otkaži',
       filter: 'Filtriraj',
       goBack: 'Nazad',
       delete: 'Obriši',
