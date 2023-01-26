@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button, HStack, Text, VStack, Flex, Box, useToast } from '@chakra-ui/react'
 import { useForm, Controller, useFieldArray } from 'react-hook-form'
 import { FaPlus } from 'react-icons/fa'
@@ -15,6 +16,7 @@ import InvoiceActionBar from 'components/InvoiceActionBar'
 
 const CreateInvoice = () => {
    const { onClose, saveInvoice, status, onSetStatus } = useDataContext()
+   const { t } = useTranslation()
    const [triggerSave, setTriggerSave] = useState(false)
    const [hasItem, setHasItem] = useState(false)
    const toast = useToast()
@@ -73,9 +75,9 @@ const CreateInvoice = () => {
    return (
       <form onSubmit={onSubmit}>
          <VStack spacing={5} align="start" p="50px 40px 200px 160px">
-            <Text textStyle="h1">New Invoice</Text>
+            <Text textStyle="h1">{t('newInvoice')}</Text>
             <Text textStyle="h3" color="purpleLight">
-               Bill From
+               {t('billFrom')}
             </Text>
             <Controller
                name="senderAddress.street"
@@ -112,7 +114,7 @@ const CreateInvoice = () => {
                />
             </HStack>
             <Text textStyle="h3" color="purpleLight" pt={5}>
-               Bill To
+               {t('billTo')}
             </Text>
             <Controller
                name="clientName"
@@ -193,7 +195,7 @@ const CreateInvoice = () => {
                />
             </HStack>
             <Text textStyle="h2" color="greyDark" pt={5}>
-               Item List
+               {t('itemList')}
             </Text>
             <FieldItemLabels />
             {fields.map((item, index) => (
@@ -215,7 +217,7 @@ const CreateInvoice = () => {
                type="button"
                onClick={() => append({ name: '', quantity: '', price: '', total: '' })}
             >
-               Add New Item
+               {t('addNewItem')}
             </Button>
          </VStack>
 
@@ -223,7 +225,7 @@ const CreateInvoice = () => {
             <Flex w="100%" justify="space-between">
                <Box>
                   <Button variant="button6" type="reset" onClick={onDiscard}>
-                     Discard
+                     {t('common.discard')}
                   </Button>
                </Box>
                <Box>
@@ -236,7 +238,7 @@ const CreateInvoice = () => {
                         onSetStatus(DRAFT)
                      }}
                   >
-                     Save as Draft
+                     {t('common.saveDraft')}
                   </Button>
                   <Button
                      variant="primary"
@@ -246,7 +248,7 @@ const CreateInvoice = () => {
                         onSetStatus(PENDING)
                      }}
                   >
-                     Save & Send
+                     {t('common.saveSend')}
                   </Button>
                </Box>
             </Flex>
