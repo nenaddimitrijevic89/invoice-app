@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Button, Highlight, HStack, Text, useToast, VStack } from '@chakra-ui/react'
 import { useForm, Controller, useFieldArray } from 'react-hook-form'
 import { FaPlus } from 'react-icons/fa'
@@ -14,6 +15,7 @@ import InvoiceActionBar from 'components/InvoiceActionBar'
 
 const EditInvoice = () => {
    const { onClose, invoiceForEdit, saveEditedInvoice } = useDataContext()
+   const { t } = useTranslation()
    const [triggerSave, setTriggerSave] = useState(false)
    const [hasItem, setHasItem] = useState(false)
    const toast = useToast()
@@ -76,7 +78,7 @@ const EditInvoice = () => {
                </Highlight>
             </Text>
             <Text textStyle="h3" color="purpleLight">
-               Bill From
+               {t('billFrom')}
             </Text>
             <Controller
                name="senderAddress.street"
