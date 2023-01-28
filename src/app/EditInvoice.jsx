@@ -219,20 +219,20 @@ const EditInvoice = () => {
                type="button"
                onClick={() => append({ name: '', quantity: '', price: '', total: '' })}
             >
-               Add New Item
+               {t('addNewItem')}
             </Button>
          </VStack>
 
          <InvoiceActionBar>
             <Button variant="button4" mr={3} type="reset" onClick={onCancel}>
-               Cancel
+               {t('common.cancel')}
             </Button>
             <Button
                variant="primary"
                type="submit"
                onClick={() => setTriggerSave(trigger => !trigger)}
             >
-               Save Changes
+               {t('common.saveChanges')}
             </Button>
          </InvoiceActionBar>
       </form>
