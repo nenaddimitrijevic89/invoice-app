@@ -197,7 +197,7 @@ const EditInvoice = () => {
                />
             </HStack>
             <Text textStyle="h2" color="greyDark" pt={5}>
-               Item List
+               {t('itemList')}
             </Text>
             <FieldItemLabels />
             {fields.map((item, index) => (
