@@ -45,5 +45,8 @@ export const rs = {
       deleteInvoice:
          'Da li si siguran da želiš da obrišeš fakturu # {{id}}? Ova radnja se ne može opozvati.',
    },
-   toast: {},
+   toast: {
+      invoiceCreated: 'Faktura je napravljena.',
+      invoiceCompleted: 'Faktura kompletirana.',
+   },
 }
