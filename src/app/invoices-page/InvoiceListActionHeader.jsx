@@ -30,7 +30,7 @@ const InvoiceListActionHeader = ({ invoices }) => {
       onFilterStatus(status)
    }
 
-   const statusText = status === CLEAR || status === '' ? 'Filter by status' : status
+   const statusText = status === CLEAR || status === '' ? t('common.filter') : t(`common.${status}`)
 
    const hasInvoices = invoices.length > 0
 
@@ -39,7 +39,9 @@ const InvoiceListActionHeader = ({ invoices }) => {
          <VStack align="start">
             <Text textStyle="h1">{t('invoices')}</Text>
             <Text textStyle="body1">
-               {hasInvoices ? t('totalInvoices', { number: invoices.length }) : t('noInvoices')}
+               {hasInvoices
+                  ? t('description.totalInvoices', { number: invoices.length })
+                  : t('noInvoices')}
             </Text>
          </VStack>
          <Box>
@@ -62,7 +64,7 @@ const InvoiceListActionHeader = ({ invoices }) => {
                <MenuList textStyle="h3Light">
                   {menuListItems.map(item => (
                      <MenuItem key={item} onClick={() => filterByStatus(item)}>
-                        {item}
+                        {t(`common.${item}`)}
                      </MenuItem>
                   ))}
                </MenuList>
