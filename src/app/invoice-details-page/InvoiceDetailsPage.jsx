@@ -51,7 +51,7 @@ const InvoiceDetailsPage = () => {
    const markAsPaid = () => {
       onMarkAsPaid(invoice.id)
       toast({
-         title: 'Invoice paid.',
+         title: t('toast.invoicePaid'),
          ...successToastProps,
       })
    }
