@@ -99,7 +99,7 @@ const InvoiceDetailsTable = ({ invoice }) => {
                ))}
             </GridItem>
             <GridItem colSpan={2} align="end">
-               <Text mb={4}>Price</Text>
+               <Text mb={4}>{t('price')}</Text>
                {invoice.items.map((item, i) => (
                   <Text key={`${item.price}_${i}`} textStyle="h3" mb={2}>
                      {item.price}
@@ -107,7 +107,7 @@ const InvoiceDetailsTable = ({ invoice }) => {
                ))}
             </GridItem>
             <GridItem colSpan={3} align="end">
-               <Text mb={4}>Total</Text>
+               <Text mb={4}>{t('total')}</Text>
                {invoice.items.map((item, i) => (
                   <Text key={`${item.total}_${i}`} textStyle="h3" color={colorLight} mb={2}>
                      {item.total}
