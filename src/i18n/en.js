@@ -7,6 +7,7 @@ export const en = {
    itemList: 'Item List',
    addNewItem: 'Add New Item',
    itemName: 'Item Name',
+   paymentDate: 'Payment Date',
    qty: 'Qty',
    price: 'Price',
    total: 'Total',

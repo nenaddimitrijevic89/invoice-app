@@ -7,6 +7,7 @@ export const rs = {
    itemList: 'Lista proizvoda',
    addNewItem: 'Dodaj novi proizvod',
    itemName: 'Ime proizvoda',
+   paymentDate: 'Datum plaćanja',
    qty: 'Količina',
    price: 'Cena',
    total: 'Ukupno',
