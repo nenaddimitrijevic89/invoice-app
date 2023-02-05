@@ -43,7 +43,7 @@ const InvoiceDetailsTable = ({ invoice }) => {
             <GridItem colSpan={4}>
                <Flex flexDir="column" justify="space-between" h="100%">
                   <Box>
-                     <Text>Payment Date</Text>
+                     <Text>{t('paymentDate')}</Text>
                      <Text textStyle="h3" color={colorLight} mt={4}>
                         {invoice.createdAt}
                      </Text>
