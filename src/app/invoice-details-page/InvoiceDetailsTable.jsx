@@ -49,7 +49,7 @@ const InvoiceDetailsTable = ({ invoice }) => {
                      </Text>
                   </Box>
                   <Box>
-                     <Text>Payment Due</Text>
+                     <Text>{t('paymentDue')}</Text>
                      <Text textStyle="h3" color={colorLight} mt={4}>
                         {invoice.paymentDue}
                      </Text>
