@@ -9,6 +9,8 @@ export const en = {
    itemName: 'Item Name',
    paymentDate: 'Payment Date',
    paymentDue: 'Payment Due',
+   sentTo: 'Sent to',
+   amountDue: 'Amount Due',
    qty: 'Qty',
    price: 'Price',
    total: 'Total',
