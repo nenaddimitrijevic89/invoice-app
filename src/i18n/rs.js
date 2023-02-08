@@ -55,6 +55,7 @@ export const rs = {
       invoiceCompleted: 'Faktura je kompletirana.',
       invoiceDeleted: 'Faktura je obrisana.',
       invoicePaid: 'Faktura je plaćena.',
+      invoiceCanceled: 'Faktura je otkazana.',
       fillAllFields: 'Pokušajte da popunite sva polja.',
    },
 }
