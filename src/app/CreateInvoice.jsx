@@ -65,7 +65,7 @@ const CreateInvoice = () => {
       reset({ ...defaultValues })
       onClose()
       toast({
-         title: 'Invoice canceled.',
+         title: t('invoiceCanceled'),
          ...successToastProps,
       })
    }
