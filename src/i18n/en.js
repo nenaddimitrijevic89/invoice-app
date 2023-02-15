@@ -58,4 +58,7 @@ export const en = {
       invoiceCanceled: 'Invoice canceled.',
       fillAllFields: 'Try to fill all fields.',
    },
+   tooltip: {
+      viewInvoiceDetails: 'View invoice details',
+   },
 }
