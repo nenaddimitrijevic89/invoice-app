@@ -58,4 +58,7 @@ export const rs = {
       invoiceCanceled: 'Faktura je otkazana.',
       fillAllFields: 'Pokušajte da popunite sva polja.',
    },
+   tooltip: {
+      viewInvoiceDetails: 'View invoice details',
+   },
 }
