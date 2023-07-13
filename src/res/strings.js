@@ -49,6 +49,7 @@ export const strings = {
       itemName: 'Ime proizvoda',
       qty: 'Qty',
       price: 'Cena',
+      total: 'Total',
       form: {
          street: 'Ulica',
          city: 'Grad',
