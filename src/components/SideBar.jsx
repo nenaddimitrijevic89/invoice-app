@@ -14,7 +14,7 @@ const SideBar = () => {
          bg="purpleBlackDark"
          boxShadow="0 4px 12px 0 rgba(0, 0, 0, 0.05)"
          rounded="0 30px 30px 0"
-         w={{ base: '50px', lg: '100px' }}
+         w={{ base: '60px', lg: '100px' }}
          flexDir="column"
          justifyContent="space-between"
       >
